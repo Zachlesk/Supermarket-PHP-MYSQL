@@ -14,7 +14,7 @@
     integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 
 
-  <link rel="stylesheet" type="text/css" href="./css/dashboard.css">
+  <link rel="stylesheet" type="text/css" href="../css/dashboard.css">
 
 </head>
 
@@ -25,39 +25,39 @@
 
       <div class="perfil">
         <h3 style="margin-bottom: 2rem;"> Supermarket </h3>
-        <img src="./images/icon.jpg" alt="" class="imagenPerfil">
+        <img src="../images/icon.jpg" alt="" class="imagenPerfil">
         <h3> Zachlesk </h3>
          <a href="https://github.com/Zachlesk" target="_blank"> <h6 style="font-size: 14px"> <i class="bi bi-github"> </i> GitHub </h6> </a>
 
       </div>
       <div class="menus">
-        <a href="dashboard.php" style="display: flex;gap:2px;">
+        <a href="../dashboard.php" style="display: flex;gap:2px;">
           <i class="bi bi-house-door"> </i>
-          <h3 style="margin: 0px; font-weight: 800;"> Home </h3>
+          <h3 style="margin: 0px; "> Home </h3>
         </a>
-        <a href="./categorias/categorias.php" style="display: flex;gap:1px;">
+        <a href="../categorias/categorias.php" style="display: flex;gap:1px;">
         <i class="bi bi-tags-fill"></i>
           <h3 style="margin: 0px;"> Categorias </h3>
         </a>
-        <a href="./clientes/clientes.php" style="display: flex;gap:1px;">
+        <a href="../clientes/clientes.php" style="display: flex;gap:1px;">
           <i class="bi bi-people"></i>
           <h3 style="margin: 0px;"> Clientes </h3>
         </a>
-        <a href="./empleados/empleados.php" style="display: flex;gap:1px;">
+        <a href="../empleados/empleados.php" style="display: flex;gap:1px;">
         <i class="bi bi-person-vcard-fill"></i>
           <h3 style="margin: 0px;"> Empleados </h3>
         </a>
-        <a href="./facturas/facturas.php" style="display: flex;gap:1px;">
+        <a href="../facturas/facturas.php" style="display: flex;gap:1px;">
             <i class="bi bi-receipt-cutoff"></i>
           <h3 style="margin: 0px;"> Facturas </h3>
         </a>
-        <a href="./productos/productos.php" style="display: flex;gap:1px;">
+        <a href="../productos/productos.php" style="display: flex;gap:1px;">
         <i class="bi bi-bag-fill"></i>
           <h3 style="margin: 0px;"> Productos </h3>
         </a>
-        <a href="./proveedores/proveedores.php" style="display: flex;gap:1px;">
+        <a href="../proveedores/proveedores.php" style="display: flex;gap:1px;">
         <i class="bi bi-person-heart"></i>
-          <h3 style="margin: 0px;"> Proovedores </h3>
+          <h3 style="margin: 0px; font-weight: 1000;"> Proovedores </h3>
         </a>
        
 
