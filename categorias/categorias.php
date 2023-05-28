@@ -1,4 +1,11 @@
+<?php
+  require_once("config.php");
 
+  $data = new Categorias();
+
+  $all = $data -> getAll();
+
+?>
 <!DOCTYPE html>
 <html>
 
@@ -86,7 +93,23 @@
 
             <!-- ///////Llenado DInamico desde la Base de Datos -->
          
-       
+            <?php
+              foreach($all as $key => $val){
+               
+              
+            ?>
+            <tr>
+              <td><?php echo $val['id']?>  </td>
+              <td><?php echo $val['nombres']?>  </td>
+              <td><?php echo $val['descripcion']?>  </td>
+              <td><?php echo $val['imagen']?>  </td>
+              <td>
+                <a class="btn btn-danger" href="borrarEstudiantes.php?id=<?=$val['id'] ?>&&req=delete"> Borrar </a>
+                <a class="btn btn-warning" href="actualizarEstudiantes.php?id=<?=$val['id'] ?>"> Editar </a>
+              </td>
+            </tr>
+
+            <?php }?>
 
           </tbody>
         
@@ -129,21 +152,21 @@
               </div>
 
               <div class="mb-1 col-12">
-                <label for="direccion" class="form-label">Direccion</label>
+                <label for="descripcion" class="form-label">Descripcion</label>
                 <input 
                   type="text"
-                  id="direccion"
-                  name="direccion"
+                  id="descripcion"
+                  name="descripcion"
                   class="form-control"  
                 />
               </div>
 
               <div class="mb-1 col-12">
-                <label for="logros" class="form-label">Logros</label>
+                <label for="imagen" class="form-label">Imagen</label>
                 <input 
                   type="text"
-                  id="logros"
-                  name="logros"
+                  id="imagen"
+                  name="imagen"
                   class="form-control"  
                  
                 />

@@ -75,10 +75,9 @@
           <thead>
             <tr>
               <th scope="col">#</th>
-              <th scope="col">NOMBRES</th>
-              <th scope="col">DIRECCION</th>
-              <th scope="col">LOGROS</th>
-              <th scope="col">DETALLE</th>
+              <th scope="col">CELULAR</th>
+              <th scope="col">COMPAÑIA</th>
+              
             </tr>
           </thead>
           <tbody class="" id="tabla">

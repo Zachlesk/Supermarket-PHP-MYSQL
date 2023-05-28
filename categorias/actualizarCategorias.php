@@ -1,7 +1,7 @@
 <?php
 
 require_once("config.php");
-$data = new Config();
+$data = new Categorias();
 
 $id = $_GET["id"];
 $data->setId($id);

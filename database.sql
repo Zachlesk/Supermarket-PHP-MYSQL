@@ -1,13 +1,12 @@
 CREATE DATABASE Supermercado;
 
-USE Supermarcado;
+USE Supermercado;
 
 CREATE TABLE categorias(
-    categoriaId INT NOT NULL auto_increment,
-    nombre VARCHAR(50) NOT NULL,
+    categoriaId INT primary key NOT NULL auto_increment,
+    nombres VARCHAR(50) NOT NULL,
     descripcion VARCHAR(150) NOT NULL,
     imagen VARCHAR(50) NOT NULL,
-    PRIMARY KEY(categoriaId)
 );
 
 CREATE TABLE clientes(
@@ -63,6 +62,6 @@ CREATE TABLE productos(
     nombreProducto VARCHAR(50) NOT NULL,
     descontinuado BOOLEAN,
     PRIMARY KEY(productoId),
-    FOREIGN KEY (categoriasId) REFERENCES categorias(categoriasId),
+    FOREIGN KEY (categoriasId) REFERENCES categorias(categoriaId),
     FOREIGN KEY (proveedorId) REFERENCES proveedores(proveedorId)
 );

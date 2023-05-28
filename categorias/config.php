@@ -3,28 +3,30 @@
 require_once("../db.php");
 
 
-class Categorias extends PDO{
+class Categorias {
     
-    private $categoriasId;
-    private $nombre;
+    private $categoriaId;
+    private $nombres;
     private $descripcion;
     private $imagen;
+    protected $dbCnx;
 
-    public function __construct($categoriasId= 0, $nombre= "", $descripcion="", $imagen=""){
-        $this->categoriasId = $categoriasId;
-        $this->nombre = $nombre;
+    public function __construct($categoriaId= 0, $nombres= "", $descripcion="", $imagen=""){
+        $this->categoriaId = $categoriaId;
+        $this->nombres = $nombres;
         $this->descripcion = $descripcion;
         $this->imagen = $imagen;
-        parent::__construct();
+        $this->dbCnx = new PDO(DB_TYPE.":host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PWD, [PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC]);
+        
     }
     
     //Getters
-    public function getCategoriasId(){
-        return $this->categoriasId;
+    public function getCategoriaId(){
+        return $this->categoriaId;
     }
 
-    public function getNombre(){
-        return $this->nombre;
+    public function getNombres(){
+        return $this->nombres;
     }
 
     public function getDescripcion(){
@@ -36,12 +38,12 @@ class Categorias extends PDO{
     }
 
     //Setters
-    public function setCategoriasId($categoriasId){
-        $this->categoriasId =$categoriasId;
+    public function setCategoriaId($categoriaId){
+        $this->categoriaId =$categoriaId;
     }
 
-    public function setNombre($nombre){
-        $this->nombre =$nombre;
+    public function setNombres($nombres){
+        $this->nombres =$nombres;
     }
 
     public function setDescripcion($descripcion){
@@ -54,9 +56,9 @@ class Categorias extends PDO{
 
     public function insertData(){
         try {
-            $stm = $this-> dbCnx -> prepare("INSERT INTO categorias(nombre,descripcion,imagen) 
+            $stm = $this-> dbCnx -> prepare("INSERT INTO categorias(nombres,descripcion,imagen) 
             VALUES (:nomb,:descr,:img)");
-            $stm->bindParam(":nomb",$this->nombre);
+            $stm->bindParam(":nomb",$this->nombres);
             $stm->bindParam(":descr",$this->descripcion);
             $stm->bindParam(":img",$this->imagen);
             $stm->execute();
@@ -77,8 +79,8 @@ class Categorias extends PDO{
     
     public function delete(){
         try {
-            $stm = $this-> dbCnx -> prepare("DELETE FROM categorias WHERE categoriasId = :id");
-            $stm->bindParam(":id",$this->categoriasId);
+            $stm = $this-> dbCnx -> prepare("DELETE FROM categorias WHERE categoriaId = :id");
+            $stm->bindParam(":id",$this->categoriaId);
             $stm -> execute();
             return $stm -> fetchAll();
         } catch (Exception $e) {
@@ -88,8 +90,8 @@ class Categorias extends PDO{
     
     public function selectOne(){
         try {
-            $stm = $this-> dbCnx -> prepare("SELECT * FROM categorias WHERE categoriasId = :id");
-            $stm->bindParam(":id",$this->categoriasId);
+            $stm = $this-> dbCnx -> prepare("SELECT * FROM categorias WHERE categoriaId = :id");
+            $stm->bindParam(":id",$this->categoriaId);
             $stm -> execute();
             return $stm -> fetchAll();
         } catch (Exception $e) {
@@ -99,10 +101,10 @@ class Categorias extends PDO{
 
     public function update(){
         try {
-            $stm = $this-> dbCnx -> prepare("UPDATE categorias SET nombre=:nomb , descripcion=:descr , imagen=:img
-            WHERE categoriasId = :id");
-            $stm->bindParam(":id",$this->categoriasId);
-            $stm->bindParam(":nomb",$this->nombre);
+            $stm = $this-> dbCnx -> prepare("UPDATE categorias SET nombres=:nomb , descripcion=:descr , imagen=:img
+            WHERE categoriaId = :id");
+            $stm->bindParam(":id",$this->categoriaId);
+            $stm->bindParam(":nomb",$this->nombres);
             $stm->bindParam(":descr",$this->descripcion);
             $stm->bindParam(":img",$this->imagen);
             $stm -> execute();

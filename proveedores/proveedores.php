@@ -76,8 +76,8 @@
             <tr>
               <th scope="col">#</th>
               <th scope="col">NOMBRES</th>
-              <th scope="col">DIRECCION</th>
-              <th scope="col">LOGROS</th>
+              <th scope="col">TELEFONO</th>
+              <th scope="col">CIUDAD</th>
               <th scope="col">DETALLE</th>
             </tr>
           </thead>

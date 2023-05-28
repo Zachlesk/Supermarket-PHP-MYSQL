@@ -75,10 +75,13 @@
           <thead>
             <tr>
               <th scope="col">#</th>
-              <th scope="col">NOMBRES</th>
-              <th scope="col">DIRECCION</th>
-              <th scope="col">LOGROS</th>
-              <th scope="col">DETALLE</th>
+              <th scope="col">CATEGORIA #</th>
+              <th scope="col">PRECIO UNIDAD</th>
+              <th scope="col">STOCK</th>
+              <th scope="col">UNIDADES PEDIDAS</th>
+              <th scope="col">PROVEEDOR #</th>
+              <th scope="col">NOMBRE PRODUCTO</th>
+              <th scope="col">DESCONTINUADO</th>
             </tr>
           </thead>
           <tbody class="" id="tabla">
