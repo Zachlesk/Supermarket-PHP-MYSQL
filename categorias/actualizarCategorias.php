@@ -3,18 +3,19 @@
 require_once("config.php");
 $data = new Categorias();
 
-$id = $_GET["categoriaId"];
-$data->setId($id);
+$id = $_GET["id"]; 
+
+$data->setCategoriaId($id);
 $record = $data->selectOne();
 $val = $record[0];
 
 if(isset($_POST["editar"])) {
-    $data->setNombre($_POST["nombre"]);
+    $data->setNombres($_POST["nombres"]);
     $data->setDescripcion($_POST["descripcion"]);
     $data->setImagen($_POST["imagen"]);
 
     $data -> update();
-    echo "<script> alert('El dato seleccionado ha sido actualizado satisfactoriamente');document.location='estudiantes.php'</script>";
+    echo "<script> alert('El dato seleccionado ha sido actualizado satisfactoriamente');document.location='categorias.php'</script>";
 }
 ?>
 
@@ -35,7 +36,7 @@ if(isset($_POST["editar"])) {
     integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 
 
-  <link rel="stylesheet" type="text/css" href="css/estudiantes.css">
+  <link rel="stylesheet" type="text/css" href="../css/dashboard.css">
 
 </head>
 
@@ -46,17 +47,38 @@ if(isset($_POST["editar"])) {
 
       <div class="perfil">
         <h3 style="margin-bottom: 2rem;">Camp Skiler.</h3>
-        <img src="images/Diseño sin título.png" alt="" class="imagenPerfil">
-        <h3 >Maicol Estrada</h3>
+        <img src="../images/icon.jpg" alt="" class="imagenPerfil">
+        <h3 > Zachlesk </h3>
+        <a href="https://github.com/Zachlesk" target="_blank"> <h6 style="font-size: 14px"> <i class="bi bi-github"> </i> GitHub </h6> </a>
       </div>
       <div class="menus">
-        <a href="home.html" style="display: flex;gap:2px;">
+      <a href="dashboard.php" style="display: flex;gap:2px;">
           <i class="bi bi-house-door"> </i>
-          <h3 style="margin: 0px;font-weight: 800;">Home</h3>
+          <h3 style="margin: 0px; font-weight: 800;"> Home </h3>
         </a>
-        <a href="/Estudiantes/Estudiantes.html" style="display: flex;gap:2px;">
+        <a href="./categorias/categorias.php" style="display: flex;gap:1px;">
+        <i class="bi bi-tags-fill"></i>
+          <h3 style="margin: 0px;"> Categorias </h3>
+        </a>
+        <a href="./clientes/clientes.php" style="display: flex;gap:1px;">
           <i class="bi bi-people"></i>
-          <h3 style="margin: 0px;">Estudiantes</h3>
+          <h3 style="margin: 0px;"> Clientes </h3>
+        </a>
+        <a href="./empleados/empleados.php" style="display: flex;gap:1px;">
+        <i class="bi bi-person-vcard-fill"></i>
+          <h3 style="margin: 0px;"> Empleados </h3>
+        </a>
+        <a href="./facturas/facturas.php" style="display: flex;gap:1px;">
+            <i class="bi bi-receipt-cutoff"></i>
+          <h3 style="margin: 0px;"> Facturas </h3>
+        </a>
+        <a href="./productos/productos.php" style="display: flex;gap:1px;">
+        <i class="bi bi-bag-fill"></i>
+          <h3 style="margin: 0px;"> Productos </h3>
+        </a>
+        <a href="./proveedores/proveedores.php" style="display: flex;gap:1px;">
+        <i class="bi bi-person-heart"></i>
+          <h3 style="margin: 0px;"> Proovedores </h3>
         </a>
       </div>
     </div>
@@ -78,25 +100,25 @@ if(isset($_POST["editar"])) {
               </div>
 
               <div class="mb-1 col-12">
-                <label for="direccion" class="form-label">Direccion</label>
+                <label for="descripcion" class="form-label">Descripcion</label>
                 <input 
                   type="text"
-                  id="direccion"
-                  name="direccion"
+                  id="descripcion"
+                  name="descripcion"
                   class="form-control"  
-                  value = "<?php echo $val['direccion'];?>"
+                  value = "<?php echo $val['descripcion'];?>"
                  
                 />
               </div>
 
               <div class="mb-1 col-12">
-                <label for="logros" class="form-label">Logros</label>
+                <label for="imagen" class="form-label">Imagen</label>
                 <input 
                   type="text"
-                  id="logros"
-                  name="logros"
+                  id="imagen"
+                  name="imagen"
                   class="form-control"
-                  value = "<?php echo $val['logros'];?>"
+                  value = "<?php echo $val['imagen'];?>"
                   
                   
                 />

@@ -77,9 +77,9 @@ class Categorias {
     public function delete(){
         try {
             $stm = $this-> dbCnx -> prepare("DELETE FROM categorias WHERE categoriaId = ?");
-            $stm -> execute([$this->id]);
+            $stm -> execute([$this->categoriaId]);
             return $stm -> fetchAll();
-            echo "<script> alert('Registro eliminado');document.location='estudiantes.php'</script>'";
+            echo "<script> alert('Categoria eliminada');document.location='categorias.php'</script>'";
         } catch (Exception $e) {
             return $e->getMessages();
         }
@@ -88,7 +88,7 @@ class Categorias {
     public function selectOne(){
         try {
             $stm = $this-> dbCnx -> prepare("SELECT * FROM categorias WHERE categoriaId = ?");
-            $stm -> execute([$this->id]);
+            $stm -> execute([$this->categoriaId]);
             return $stm -> fetchAll();
         } catch (Exception $e) {
             return $e->getMessages();
@@ -98,7 +98,7 @@ class Categorias {
     public function update(){
         try {
             $stm = $this-> dbCnx -> prepare("UPDATE categorias SET nombres= ? , descripcion= ? , imagen= ? WHERE categoriaId = ?");
-            $stm -> execute([$this->nombres, $this->direccion, $this->logros, $this->id]);
+            $stm -> execute([$this->nombres, $this->descripcion, $this->imagen, $this->categoriaId]);
             return $stm -> fetchAll();
         } catch (Exception $e) {
             return $e->getMessages();

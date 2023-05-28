@@ -1,6 +1,6 @@
-CREATE DATABASE Supermercado;
+CREATE DATABASE supermarket;
 
-USE Supermercado;
+USE supermarket;
 
 CREATE TABLE categorias(
     categoriaId INT NOT NULL auto_increment,
@@ -71,4 +71,4 @@ CREATE TABLE facturaDetalle(
 
 
 
-DROP DATABASE Supermercado;
+DROP DATABASE supermarket;

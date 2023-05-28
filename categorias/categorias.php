@@ -1,6 +1,6 @@
 <?php
 
-  require_once("config.php");
+  require_once("./config.php");
 
   $data = new Categorias();
 
@@ -100,13 +100,13 @@
               
             ?>
             <tr>
-              <td><?php echo $val['id']?>  </td>
+              <td><?php echo $val['categoriaId']?>  </td>
               <td><?php echo $val['nombres']?>  </td>
               <td><?php echo $val['descripcion']?>  </td>
               <td><?php echo $val['imagen']?>  </td>
               <td>
-                <a class="btn btn-danger" href="borrarEstudiantes.php?id=<?=$val['id'] ?>&&req=delete"> Borrar </a>
-                <a class="btn btn-warning" href="actualizarEstudiantes.php?id=<?=$val['id'] ?>"> Editar </a>
+                <a class="btn btn-danger" href="borrarCategorias.php?id=<?=$val['categoriaId'] ?>&&req=delete"> Borrar </a>
+                <a class="btn btn-warning" href="actualizarCategorias.php?id=<?=$val['categoriaId'] ?>"> Editar </a>
               </td>
             </tr>
 
@@ -137,11 +137,11 @@
       <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" >
         <div class="modal-content" >
           <div class="modal-header" >
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Nuevo Estudiante</h1>
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Nuevas Categoria</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body" style="background-color: rgb(231, 253, 246);">
-            <form class="col d-flex flex-wrap" method="post">
+            <form class="col d-flex flex-wrap" action="registrarCategorias.php" method="post">
               <div class="mb-1 col-12">
                 <label for="nombres" class="form-label">Nombres</label>
                 <input 
@@ -165,7 +165,7 @@
               <div class="mb-1 col-12">
                 <label for="imagen" class="form-label">Imagen</label>
                 <input 
-                  type="text"
+                  type="file"
                   id="imagen"
                   name="imagen"
                   class="form-control"  
@@ -174,7 +174,7 @@
               </div>
 
               <div class=" col-12 m-2">
-                <input type="submit" class="btn btn-primary" value="guardar" name="guardar"/>
+                <input type="submit" class="btn btn-primary" value="Guardar" name="guardar"/>
               </div>
             </form>  
          </div>       

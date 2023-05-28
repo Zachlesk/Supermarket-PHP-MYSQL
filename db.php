@@ -6,7 +6,7 @@ if (!defined("DB_HOST")) {
     define("DB_HOST","localhost");
 }
 if (!defined("DB_NAME")) {
-    define("DB_NAME","Supermercado");
+    define("DB_NAME","supermarket");
 }
 if (!defined("DB_USER")) {
     define("DB_USER","root");
