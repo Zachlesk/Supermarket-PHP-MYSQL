@@ -3,7 +3,7 @@
 require_once("config.php");
 $data = new Categorias();
 
-$id = $_GET["id"];
+$id = $_GET["categoriaId"];
 $data->setId($id);
 $record = $data->selectOne();
 $val = $record[0];

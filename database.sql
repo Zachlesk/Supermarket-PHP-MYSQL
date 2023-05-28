@@ -3,17 +3,19 @@ CREATE DATABASE Supermercado;
 USE Supermercado;
 
 CREATE TABLE categorias(
-    categoriaId INT primary key NOT NULL auto_increment,
+    categoriaId INT NOT NULL auto_increment,
     nombres VARCHAR(50) NOT NULL,
     descripcion VARCHAR(150) NOT NULL,
     imagen VARCHAR(50) NOT NULL,
+    PRIMARY KEY (categoriaId)
 );
 
 CREATE TABLE clientes(
     clienteId INT NOT NULL auto_increment,
     celular INT NOT NULL,
     compania VARCHAR(255) NOT NULL,
-    PRIMARY KEY(clienteId)
+    PRIMARY KEY (clienteId)
+
 );
 
 CREATE TABLE empleados(
@@ -33,15 +35,6 @@ CREATE TABLE facturas(
     PRIMARY KEY(facturaId),
     FOREIGN KEY (empleadoId) REFERENCES empleados(empleadoId),
     FOREIGN KEY (clienteId) REFERENCES clientes(clienteId)
-);
-
-CREATE TABLE facturaDetalle(
-    facturaId INT,
-    productoId INT,
-    cantidad INT NOT NULL,
-    precioVenta INT NOT NULL,
-    FOREIGN KEY (facturaId) REFERENCES facturas(facturaId),
-    FOREIGN KEY (productoId) REFERENCES productos(productoId)
 );
 
 CREATE TABLE proveedores(
@@ -65,3 +58,17 @@ CREATE TABLE productos(
     FOREIGN KEY (categoriasId) REFERENCES categorias(categoriaId),
     FOREIGN KEY (proveedorId) REFERENCES proveedores(proveedorId)
 );
+
+
+CREATE TABLE facturaDetalle(
+    facturaId INT,
+    productoId INT,
+    cantidad INT NOT NULL,
+    precioVenta INT NOT NULL,
+    FOREIGN KEY (facturaId) REFERENCES facturas(facturaId),
+    FOREIGN KEY (productoId) REFERENCES productos(productoId)
+);
+
+
+
+DROP DATABASE Supermercado;

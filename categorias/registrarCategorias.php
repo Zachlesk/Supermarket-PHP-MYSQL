@@ -3,7 +3,7 @@
 if (isset($_POST['guardar'])) {
     require_once("config.php");
 
-    $config = new Config();
+    $config = new Categorias();
 
     $config-> setNombres($_POST['nombres']);
     $config-> setDescripcion($_POST['descripcion']);
@@ -11,7 +11,7 @@ if (isset($_POST['guardar'])) {
 
     $config-> insertData();
 
-    echo "<script> alert('La categoria fue guardada satisfactoriamente');document.location='facturacion.php'</script>";
+    echo "<script> alert('La categoria fue guardada satisfactoriamente');document.location='categorias.php'</script>";
 }
 
 ?>

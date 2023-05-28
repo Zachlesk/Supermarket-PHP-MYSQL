@@ -56,18 +56,15 @@ class Categorias {
 
     public function insertData(){
         try {
-            $stm = $this-> dbCnx -> prepare("INSERT INTO categorias(nombres,descripcion,imagen) 
-            VALUES (:nomb,:descr,:img)");
-            $stm->bindParam(":nomb",$this->nombres);
-            $stm->bindParam(":descr",$this->descripcion);
-            $stm->bindParam(":img",$this->imagen);
-            $stm->execute();
+            $stm = $this-> dbCnx -> prepare("INSERT INTO categorias (nombres,descripcion,imagen) 
+            VALUES (?,?,?)");
+            $stm -> execute ([$this->nombres, $this->descripcion, $this->imagen]);
         } catch (Exception $e) {
             return $e->getMessages();
         }
     }
 
-    public function getAll(){
+    public function obtainAll(){
         try {
             $stm = $this-> dbCnx -> prepare("SELECT * FROM categorias");
             $stm -> execute();
@@ -79,10 +76,10 @@ class Categorias {
     
     public function delete(){
         try {
-            $stm = $this-> dbCnx -> prepare("DELETE FROM categorias WHERE categoriaId = :id");
-            $stm->bindParam(":id",$this->categoriaId);
-            $stm -> execute();
+            $stm = $this-> dbCnx -> prepare("DELETE FROM categorias WHERE categoriaId = ?");
+            $stm -> execute([$this->id]);
             return $stm -> fetchAll();
+            echo "<script> alert('Registro eliminado');document.location='estudiantes.php'</script>'";
         } catch (Exception $e) {
             return $e->getMessages();
         }
@@ -90,9 +87,8 @@ class Categorias {
     
     public function selectOne(){
         try {
-            $stm = $this-> dbCnx -> prepare("SELECT * FROM categorias WHERE categoriaId = :id");
-            $stm->bindParam(":id",$this->categoriaId);
-            $stm -> execute();
+            $stm = $this-> dbCnx -> prepare("SELECT * FROM categorias WHERE categoriaId = ?");
+            $stm -> execute([$this->id]);
             return $stm -> fetchAll();
         } catch (Exception $e) {
             return $e->getMessages();
@@ -101,13 +97,8 @@ class Categorias {
 
     public function update(){
         try {
-            $stm = $this-> dbCnx -> prepare("UPDATE categorias SET nombres=:nomb , descripcion=:descr , imagen=:img
-            WHERE categoriaId = :id");
-            $stm->bindParam(":id",$this->categoriaId);
-            $stm->bindParam(":nomb",$this->nombres);
-            $stm->bindParam(":descr",$this->descripcion);
-            $stm->bindParam(":img",$this->imagen);
-            $stm -> execute();
+            $stm = $this-> dbCnx -> prepare("UPDATE categorias SET nombres= ? , descripcion= ? , imagen= ? WHERE categoriaId = ?");
+            $stm -> execute([$this->nombres, $this->direccion, $this->logros, $this->id]);
             return $stm -> fetchAll();
         } catch (Exception $e) {
             return $e->getMessages();

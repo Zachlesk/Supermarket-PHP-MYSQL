@@ -1,9 +1,10 @@
 <?php
+
   require_once("config.php");
 
   $data = new Categorias();
 
-  $all = $data -> getAll();
+  $all = $data -> obtainAll();
 
 ?>
 <!DOCTYPE html>
