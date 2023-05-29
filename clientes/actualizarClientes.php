@@ -10,6 +10,7 @@ $record = $data->selectOne();
 $val = $record[0];
 
 if(isset($_POST["editar"])) {
+    $data->setNombre($_POST["nombre"]);
     $data->setCelular($_POST["celular"]);
     $data->setCompania($_POST["compania"]);
 

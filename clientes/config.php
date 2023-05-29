@@ -87,7 +87,7 @@ class Clientes extends PDOCnx{
     
     public function selectOne(){
         try {
-            $stm = $this-> dbCnx -> prepare("SELECT * FROM clientes WHERE clienteId = :id");
+            $stm = $this-> dbCnx -> prepare("SELECT * FROM clientes WHERE clienteId = ?");
             $stm -> execute([$this->clienteId]);
             return $stm -> fetchAll();
         } catch (Exception $e) {
@@ -97,7 +97,7 @@ class Clientes extends PDOCnx{
 
     public function update(){
         try {
-            $stm = $this-> dbCnx -> prepare("UPDATE clientes SET celular= ? , compania ? 
+            $stm = $this-> dbCnx -> prepare("UPDATE clientes SET nombre= ?, celular= ? , compania ? 
             WHERE clienteId = ?");
             $stm -> execute([$this->nombre, $this->celular, $this->compania, $this->clienteId]);
             return $stm -> fetchAll();
