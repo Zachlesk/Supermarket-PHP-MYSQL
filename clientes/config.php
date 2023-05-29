@@ -1,18 +1,20 @@
 <?php
 
-require_once("./Pdo.php");
+require_once("../db.php");
 
-class Clientes extends ConexiónPdo{
+class Clientes {
     
     private $clienteId;
     private $celular;
     private $compania;
+    protected $dbCnx;
 
     public function __construct($clienteId= 0, $celular= "", $compania=""){
         $this->clienteId = $clienteId;
         $this->celular = $celular;
         $this->compania = $compania;
-        parent::__construct();
+        $this->dbCnx = new PDO(DB_TYPE.":host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PWD, [PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC]);
+
     }
     
     //Getters
@@ -44,16 +46,14 @@ class Clientes extends ConexiónPdo{
     public function insertData(){
         try {
             $stm = $this-> dbCnx -> prepare("INSERT INTO clientes(celular,compania) 
-            VALUES (:cel,:comp)");
-            $stm->bindParam(":cel",$this->celular);
-            $stm->bindParam(":comp",$this->compania);
-            $stm->execute();
+            VALUES (?,?)");
+            $stm -> execute ([$this->celular, $this->compania]);
         } catch (Exception $e) {
             return $e->getMessages();
         }
     }
 
-    public function getAll(){
+    public function obtainAll(){
         try {
             $stm = $this-> dbCnx -> prepare("SELECT * FROM clientes");
             $stm -> execute();
@@ -65,9 +65,8 @@ class Clientes extends ConexiónPdo{
     
     public function delete(){
         try {
-            $stm = $this-> dbCnx -> prepare("DELETE FROM clientes WHERE clienteId = :id");
-            $stm->bindParam(":id",$this->clienteId);
-            $stm -> execute();
+            $stm = $this-> dbCnx -> prepare("DELETE FROM clientes WHERE clienteId = ?");
+            $stm -> execute([$this->clienteId]);
             return $stm -> fetchAll();
         } catch (Exception $e) {
             return $e->getMessages();
@@ -77,8 +76,7 @@ class Clientes extends ConexiónPdo{
     public function selectOne(){
         try {
             $stm = $this-> dbCnx -> prepare("SELECT * FROM clientes WHERE clienteId = :id");
-            $stm->bindParam(":id",$this->clienteId);
-            $stm -> execute();
+            $stm -> execute([$this->clienteId]);
             return $stm -> fetchAll();
         } catch (Exception $e) {
             return $e->getMessages();
@@ -87,12 +85,9 @@ class Clientes extends ConexiónPdo{
 
     public function update(){
         try {
-            $stm = $this-> dbCnx -> prepare("UPDATE clientes SET celular=:cel , compania=:comp 
-            WHERE clienteId = :id");
-            $stm->bindParam(":id",$this->clienteId);
-            $stm->bindParam(":cel",$this->celular);
-            $stm->bindParam(":comp",$this->compania);
-            $stm -> execute();
+            $stm = $this-> dbCnx -> prepare("UPDATE clientes SET celular= ? , compania ? 
+            WHERE clienteId = ?");
+            $stm -> execute([$this->celular, $this->compania, $this->clienteId]);
             return $stm -> fetchAll();
         } catch (Exception $e) {
             return $e->getMessages();

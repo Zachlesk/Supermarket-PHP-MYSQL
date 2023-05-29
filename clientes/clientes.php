@@ -1,3 +1,13 @@
+<?php
+
+  require_once("./config.php");
+
+  $data = new Clientes();
+
+  $all = $data -> obtainAll();
+
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -67,7 +77,7 @@
 
     <div class="parte-media">
       <div style="display: flex; justify-content: space-between;">
-        <h2> Dashboard </h2>
+        <h2> Clientes </h2>
         <button class="btn-m" data-bs-toggle="modal" data-bs-target="#registrarEstudiantes"><i class="bi bi-person-add " style="color: rgb(255, 255, 255);" ></i></button>
       </div>
       <div class="menuTabla contenedor2">
@@ -77,6 +87,7 @@
               <th scope="col">#</th>
               <th scope="col">CELULAR</th>
               <th scope="col">COMPAÑIA</th>
+              <th scope="col">DETALLE</th>
               
             </tr>
           </thead>
@@ -84,7 +95,22 @@
 
             <!-- ///////Llenado DInamico desde la Base de Datos -->
          
-       
+            <?php
+              foreach($all as $key => $val){
+               
+              
+            ?>
+            <tr>
+              <td><?php echo $val['clienteId']?>  </td>
+              <td><?php echo $val['celular']?>  </td>
+              <td><?php echo $val['compania']?>  </td>
+              <td>
+                <a class="btn btn-danger" href="borrarClientes.php?id=<?=$val['clienteId'] ?>&&req=delete"> Borrar </a>
+                <a class="btn btn-warning" href="actualizarClientes.php?id=<?=$val['clienteId'] ?>"> Editar </a>
+              </td>
+            </tr>
+
+            <?php }?>
 
           </tbody>
         
@@ -111,44 +137,33 @@
       <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" >
         <div class="modal-content" >
           <div class="modal-header" >
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Nuevo Estudiante</h1>
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Nuevo Cliente</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body" style="background-color: rgb(231, 253, 246);">
-            <form class="col d-flex flex-wrap" method="post">
+            <form class="col d-flex flex-wrap" action="registrarClientes.php" method="post">
               <div class="mb-1 col-12">
-                <label for="nombres" class="form-label">Nombres</label>
+                <label for="celular" class="form-label"> Celular </label>
                 <input 
                   type="text"
-                  id="nombres"
-                  name="nombres"
+                  id="celular"
+                  name="celular"
                   class="form-control"  
                 />
               </div>
 
               <div class="mb-1 col-12">
-                <label for="direccion" class="form-label">Direccion</label>
+                <label for="compania" class="form-label"> Compania </label>
                 <input 
                   type="text"
-                  id="direccion"
-                  name="direccion"
+                  id="compania"
+                  name="compania"
                   class="form-control"  
-                />
-              </div>
-
-              <div class="mb-1 col-12">
-                <label for="logros" class="form-label">Logros</label>
-                <input 
-                  type="text"
-                  id="logros"
-                  name="logros"
-                  class="form-control"  
-                 
                 />
               </div>
 
               <div class=" col-12 m-2">
-                <input type="submit" class="btn btn-primary" value="guardar" name="guardar"/>
+                <input type="submit" class="btn btn-primary" value="Guardar" name="guardar"/>
               </div>
             </form>  
          </div>       
