@@ -68,7 +68,7 @@ class Empleados{
             VALUES (?,?,?,?)");
             $stm->execute([$this->nombre, $this->celular, $this->direccion, $this->imagen]);
         } catch (Exception $e) {
-            return $e->getMessages();
+            return $e->getMessage();
         }
     }
 
@@ -78,44 +78,39 @@ class Empleados{
             $stm -> execute();
             return $stm -> fetchAll();
         } catch (Exception $e) {
-            return $e->getMessages();
+            return $e->getMessage();
         }
     }
     
     public function delete(){
         try {
-            $stm = $this-> dbCnx -> prepare("DELETE FROM empleados WHERE empleadoId = :id");
-            $stm->bindParam(":id",$this->empleadoId);
-            $stm -> execute();
+            $stm = $this-> dbCnx -> prepare("DELETE FROM empleados WHERE empleadoId = ?");
+            $stm-> execute([$this->empleadoId]);
             return $stm -> fetchAll();
         } catch (Exception $e) {
-            return $e->getMessages();
+            return $e->getMessage();
         }
     }
     
     public function selectOne(){
         try {
-            $stm = $this-> dbCnx -> prepare("SELECT * FROM empleados WHERE empleadoId = :id");
-            $stm->bindParam(":id",$this->empleadoId);
-            $stm -> execute();
+            $stm = $this-> dbCnx -> prepare("SELECT * FROM empleados WHERE empleadoId = ?");
+            $stm -> execute([$this->empleadoId]);
             return $stm -> fetchAll();
         } catch (Exception $e) {
-            return $e->getMessages();
+            return $e->getMessage();
         }
     }
 
     public function update(){
         try {
-            $stm = $this-> dbCnx -> prepare("UPDATE empleados SET nombre=:nomb , celular=:descr , direccion=:img
-            WHERE empleadoId = :id");
-            $stm->bindParam(":id",$this->empleadoId);
-            $stm->bindParam(":nomb",$this->nombre);
-            $stm->bindParam(":descr",$this->celular);
-            $stm->bindParam(":img",$this->direccion);
+            $stm = $this-> dbCnx -> prepare("UPDATE empleados SET nombre= ? , celular= ? , direccion= ?
+            WHERE empleadoId = ?");
+            $stm -> execute([$this->nombre, $this->celular, $this->direccion, $this->empleadoId]);
             $stm -> execute();
             return $stm -> fetchAll();
         } catch (Exception $e) {
-            return $e->getMessages();
+            return $e->getMessage();
         }
     }
 }

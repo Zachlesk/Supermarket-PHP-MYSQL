@@ -74,17 +74,39 @@
         <table class="table table-custom ">
           <thead>
             <tr>
-              <th scope="col">#</th>
-              <th scope="col">EMPLEADO #</th>
-              <th scope="col">CLIENTE #</th>
+            <th scope="col">#</th>
+              <th scope="col">EMPLEADO ID</th>
+              <th scope="col">CLIENTE ID</th>
               <th scope="col">FECHA</th>
+              <th scope="col">DETALLE</th>
+
 
             </tr>
           </thead>
           <tbody class="" id="tabla">
 
             <!-- ///////Llenado DInamico desde la Base de Datos -->
-         
+            <?php
+              foreach($all as $key => $val){
+            ?> 
+            
+            <tr>
+                <td> <?= $val["facturaId"] ?> </td>
+                <td> <?= $val["empleadoId"] ?> </td>
+                <td> <?= $val["clienteId"] ?> </td>
+                <td> <?= $val["fecha"] ?> </td>
+                <td>
+                  <a class="btn btn-outline-danger" href="../Controllers/Facturas/borrarFacturas.php?facturaId=<?=$val['facturaId']?>&req=delete">
+                  <i class="bi bi-trash3"></i>Borrar</a>
+                </td>
+                <td>
+                  <a class="btn btn-outline-warning" href="../Controllers/Facturas/actualizarFacturas.php?facturaId=<?=$val['facturaId']?>">
+                  <i class="bi bi-pencil-square"></i>Editar</a>
+                </td>
+              </tr>
+            <?php
+              }
+            ?>
        
 
           </tbody>
@@ -112,39 +134,44 @@
       <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" >
         <div class="modal-content" >
           <div class="modal-header" >
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Nuevo Estudiante</h1>
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Nueva Factura</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body" style="background-color: rgb(231, 253, 246);">
-            <form class="col d-flex flex-wrap" method="post">
+          <form class="col d-flex flex-wrap" action="../Controllers/Facturas/registrarFacturas.php" method="post">
               <div class="mb-1 col-12">
-                <label for="nombres" class="form-label">Nombres</label>
+                <label for="empleadoId" class="form-label">Empleado Id</label>
+                <select class="form-select" aria-label="Default select example" id="empleadoId" name="empleadoId" required>
+                  <option selected>Seleccione el id del Empleados</option>
+                  <?php
+                    foreach($idempleado as $key => $valor){
+                    ?> 
+                  <option value="<?= $valor["empleadoId"]?>"><?= $valor["empleadoId"]?></option>
+                  <?php
+                    }
+                  ?>
+                </select>
+              </div>
+
+              <div class="mb-1 col-12">
+                <label for="clienteId" class="form-label">Cliente Id</label>
                 <input 
                   type="text"
-                  id="nombres"
-                  name="nombres"
-                  class="form-control"  
+                  id="clienteId"
+                  name="clienteId"
+                  class="form-control"
+                  required  
                 />
               </div>
 
               <div class="mb-1 col-12">
-                <label for="direccion" class="form-label">Direccion</label>
+                <label for="fecha" class="form-label">fecha</label>
                 <input 
-                  type="text"
-                  id="direccion"
-                  name="direccion"
-                  class="form-control"  
-                />
-              </div>
-
-              <div class="mb-1 col-12">
-                <label for="logros" class="form-label">Logros</label>
-                <input 
-                  type="text"
-                  id="logros"
-                  name="logros"
-                  class="form-control"  
-                 
+                  type="date"
+                  id="fecha"
+                  name="fecha"
+                  class="form-control"
+                  required  
                 />
               </div>
 
@@ -156,6 +183,7 @@
         </div>
       </div>
     </div>
+    
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
