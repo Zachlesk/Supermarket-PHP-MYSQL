@@ -1,14 +1,15 @@
 <?php
 
-require_once("./Pdo.php");
+require_once("../db.php");
 
-class Empleados extends ConexiónPdo{
+class Empleados{
     
     private $empleadoId;
     private $nombre;
     private $celular;
     private $direccion;
     private $imagen;
+    protected $dbCnx;
 
     public function __construct($empleadoId= 0, $nombre= "", $celular=0, $direccion="",$imagen=""){
         $this->empleadoId = $empleadoId;
@@ -16,7 +17,7 @@ class Empleados extends ConexiónPdo{
         $this->celular = $celular;
         $this->direccion = $direccion;
         $this->imagen = $imagen;
-        parent::__construct();
+        $this->dbCnx = new PDO(DB_TYPE.":host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PWD, [PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC]);
     }
     
     //Getters
@@ -64,18 +65,14 @@ class Empleados extends ConexiónPdo{
     public function insertData(){
         try {
             $stm = $this-> dbCnx -> prepare("INSERT INTO empleados(nombre,celular,direccion,imagen) 
-            VALUES (:nomb,:cel,:dire,:img)");
-            $stm->bindParam(":nomb",$this->nombre);
-            $stm->bindParam(":cel",$this->celular);
-            $stm->bindParam(":dire",$this->direccion);
-            $stm->bindParam(":img",$this->imagen);
-            $stm->execute();
+            VALUES (?,?,?,?)");
+            $stm->execute([$this->nombre, $this->celular, $this->direccion, $this->imagen]);
         } catch (Exception $e) {
             return $e->getMessages();
         }
     }
 
-    public function getAll(){
+    public function obtainAll(){
         try {
             $stm = $this-> dbCnx -> prepare("SELECT * FROM empleados");
             $stm -> execute();

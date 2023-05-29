@@ -1,17 +1,18 @@
 <?php
 
 require_once("config.php");
-$data = new Categorias();
+$data = new Empleados();
 
 $id = $_GET["id"]; 
 
-$data->setCategoriaId($id);
+$data->setEmpleadoId($id);
 $record = $data->selectOne();
 $val = $record[0];
 
 if(isset($_POST["editar"])) {
-    $data->setNombres($_POST["nombres"]);
-    $data->setDescripcion($_POST["descripcion"]);
+    $data->setNombre($_POST["nombre"]);
+    $data->setCelular($_POST["celular"]);
+    $data->setDireccion($_POST["direccion"]);
     $data->setImagen($_POST["imagen"]);
 
     $data -> update();

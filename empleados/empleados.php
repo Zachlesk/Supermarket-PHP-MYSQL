@@ -1,3 +1,13 @@
+<?php
+
+  require_once("./config.php");
+
+  $data = new Empleados();
+
+  $all = $data -> obtainAll();
+
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -67,7 +77,7 @@
 
     <div class="parte-media">
       <div style="display: flex; justify-content: space-between;">
-        <h2> Dashboard </h2>
+        <h2> Empleados </h2>
         <button class="btn-m" data-bs-toggle="modal" data-bs-target="#registrarEstudiantes"><i class="bi bi-person-add " style="color: rgb(255, 255, 255);" ></i></button>
       </div>
       <div class="menuTabla contenedor2">
@@ -79,12 +89,30 @@
               <th scope="col">CELULAR</th>
               <th scope="col">DIRECCION</th>
               <th scope="col">IMAGEN</th>
+              <th scope="col">DETALLE</th>
             </tr>
           </thead>
           <tbody class="" id="tabla">
 
             <!-- ///////Llenado DInamico desde la Base de Datos -->
-         
+            <?php
+              foreach($all as $key => $val){
+               
+              
+            ?>
+            <tr>
+              <td><?php echo $val['empleadoId']?>  </td>
+              <td><?php echo $val['nombre']?>  </td>
+              <td><?php echo $val['celular']?>  </td>
+              <td><?php echo $val['direccion']?>  </td>
+              <td><?php echo $val['imagen']?>  </td>
+              <td>
+                <a class="btn btn-danger" href="borrarEmpleados.php?id=<?=$val['empleadoId'] ?>&&req=delete"> Borrar </a>
+                <a class="btn btn-warning" href="actualizarEmpleados.php?id=<?=$val['empleadoId'] ?>"> Editar </a>
+              </td>
+            </tr>
+
+            <?php }?>
        
 
           </tbody>
@@ -116,13 +144,23 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body" style="background-color: rgb(231, 253, 246);">
-            <form class="col d-flex flex-wrap" method="post">
+            <form class="col d-flex flex-wrap" action="registrarEmpleados.php" method="post">
               <div class="mb-1 col-12">
-                <label for="nombres" class="form-label">Nombres</label>
+                <label for="nombre" class="form-label">Nombres</label>
                 <input 
                   type="text"
-                  id="nombres"
-                  name="nombres"
+                  id="nombre"
+                  name="nombre"
+                  class="form-control"  
+                />
+              </div>
+
+              <div class="mb-1 col-12">
+                <label for="celular" class="form-label">Celular</label>
+                <input 
+                  type="text"
+                  id="celular"
+                  name="celular"
                   class="form-control"  
                 />
               </div>
@@ -134,22 +172,22 @@
                   id="direccion"
                   name="direccion"
                   class="form-control"  
+                 
                 />
               </div>
-
               <div class="mb-1 col-12">
-                <label for="logros" class="form-label">Logros</label>
+                <label for="logros" class="form-label">Imagen</label>
                 <input 
                   type="text"
-                  id="logros"
-                  name="logros"
+                  id="imagen"
+                  name="imagen"
                   class="form-control"  
                  
                 />
               </div>
 
               <div class=" col-12 m-2">
-                <input type="submit" class="btn btn-primary" value="guardar" name="guardar"/>
+                <input type="submit" class="btn btn-primary" value="Guardar" name="guardar"/>
               </div>
             </form>  
          </div>       
