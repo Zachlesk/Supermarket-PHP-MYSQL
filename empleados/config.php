@@ -1,15 +1,16 @@
 <?php
 
 require_once("../db.php");
+require_once("../config.php");
 
-class Empleados{
+class Empleados extends PDOCnx{
     
     private $empleadoId;
     private $nombre;
     private $celular;
     private $direccion;
     private $imagen;
-    protected $dbCnx;
+    
 
     public function __construct($empleadoId= 0, $nombre= "", $celular=0, $direccion="",$imagen=""){
         $this->empleadoId = $empleadoId;
@@ -17,7 +18,7 @@ class Empleados{
         $this->celular = $celular;
         $this->direccion = $direccion;
         $this->imagen = $imagen;
-        $this->dbCnx = new PDO(DB_TYPE.":host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PWD, [PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC]);
+        parent::__construct();
     }
     
     //Getters

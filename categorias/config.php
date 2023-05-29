@@ -1,22 +1,22 @@
 <?php
 
-require_once("../db.php");
 
+require_once("../config.php");
 
-class Categorias {
+class Categorias extends PDOCnx{
     
     private $categoriaId;
     private $nombres;
     private $descripcion;
     private $imagen;
-    protected $dbCnx;
+    
 
     public function __construct($categoriaId= 0, $nombres= "", $descripcion="", $imagen=""){
         $this->categoriaId = $categoriaId;
         $this->nombres = $nombres;
         $this->descripcion = $descripcion;
         $this->imagen = $imagen;
-        $this->dbCnx = new PDO(DB_TYPE.":host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PWD, [PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC]);
+        parent::__construct();
         
     }
     
