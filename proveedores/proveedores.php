@@ -1,3 +1,13 @@
+<?php
+
+  require_once("./config.php");
+
+  $data = new Proveedores();
+
+  $all = $data -> obtainAll();
+
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -85,7 +95,23 @@
 
             <!-- ///////Llenado DInamico desde la Base de Datos -->
          
-       
+            <?php
+              foreach($all as $key => $val){
+               
+              
+            ?>
+            <tr>
+              <td><?php echo $val['proveedorId']?>  </td>
+              <td><?php echo $val['nombre']?>  </td>
+              <td><?php echo $val['telefono']?>  </td>
+              <td><?php echo $val['ciudad']?>  </td>
+              <td>
+                <a class="btn btn-danger" href="borrarProveedores.php?id=<?=$val['proveedorId'] ?>&&req=delete"> Borrar </a>
+                <a class="btn btn-warning" href="actualizarProveedores.php?id=<?=$val['proveedorId'] ?>"> Editar </a>
+              </td>
+            </tr>
+
+            <?php }?>
 
           </tbody>
         
@@ -112,44 +138,44 @@
       <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" >
         <div class="modal-content" >
           <div class="modal-header" >
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Nuevo Estudiante</h1>
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Nuevo Proveedor</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body" style="background-color: rgb(231, 253, 246);">
-            <form class="col d-flex flex-wrap" method="post">
+            <form class="col d-flex flex-wrap" action="registrarProveedores.php" method="post">
               <div class="mb-1 col-12">
-                <label for="nombres" class="form-label">Nombres</label>
+                <label for="nombre" class="form-label">Nombre</label>
                 <input 
                   type="text"
-                  id="nombres"
-                  name="nombres"
+                  id="nombre"
+                  name="nombre"
                   class="form-control"  
                 />
               </div>
 
               <div class="mb-1 col-12">
-                <label for="direccion" class="form-label">Direccion</label>
+                <label for="telefono" class="form-label">Telefono</label>
                 <input 
                   type="text"
-                  id="direccion"
-                  name="direccion"
+                  id="telefono"
+                  name="telefono"
                   class="form-control"  
                 />
               </div>
 
               <div class="mb-1 col-12">
-                <label for="logros" class="form-label">Logros</label>
+                <label for="ciudad" class="form-label">Ciudad</label>
                 <input 
                   type="text"
-                  id="logros"
-                  name="logros"
+                  id="ciudad"
+                  name="ciudad"
                   class="form-control"  
                  
                 />
               </div>
 
               <div class=" col-12 m-2">
-                <input type="submit" class="btn btn-primary" value="guardar" name="guardar"/>
+                <input type="submit" class="btn btn-primary" value="Guardar" name="guardar"/>
               </div>
             </form>  
          </div>       

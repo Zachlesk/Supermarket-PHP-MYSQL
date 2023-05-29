@@ -1,22 +1,21 @@
 <?php
 
 require_once("config.php");
-$data = new Empleados();
+$data = new Proveedores();
 
 $id = $_GET["id"]; 
 
-$data->setEmpleadoId($id);
+$data->setProveedorId($id);
 $record = $data->selectOne();
 $val = $record[0];
 
 if(isset($_POST["editar"])) {
     $data->setNombre($_POST["nombre"]);
-    $data->setCelular($_POST["celular"]);
-    $data->setDireccion($_POST["direccion"]);
-    $data->setImagen($_POST["imagen"]);
+    $data->setTelefono($_POST["telefono"]);
+    $data->setCiudad($_POST["ciudad"]);
 
     $data -> update();
-    echo "<script> alert('El dato seleccionado ha sido actualizado satisfactoriamente');document.location='empleados.php'</script>";
+    echo "<script> alert('El dato seleccionado ha sido actualizado satisfactoriamente');document.location='proveedores.php'</script>";
 }
 ?>
 
@@ -89,7 +88,7 @@ if(isset($_POST["editar"])) {
       <div class="menuTabla contenedor2">
       <form class="col d-flex flex-wrap" action=""  method="post">
               <div class="mb-1 col-12">
-                <label for="nombre" class="form-label">Nombres</label>
+                <label for="nombre" class="form-label">Nombre</label>
                 <input 
                   type="text"
                   id="nombre"
@@ -101,38 +100,25 @@ if(isset($_POST["editar"])) {
               </div>
 
               <div class="mb-1 col-12">
-                <label for="celular" class="form-label">Celular</label>
+                <label for="telefono" class="form-label">Telefono</label>
                 <input 
                   type="text"
-                  id="celular"
-                  name="celular"
+                  id="telefono"
+                  name="telefono"
                   class="form-control"  
-                  value = "<?php echo $val['celular'];?>"
+                  value = "<?php echo $val['telefono'];?>"
                  
                 />
               </div>
 
               <div class="mb-1 col-12">
-                <label for="direccion" class="form-label">Direccion</label>
+                <label for="imagen" class="form-label">Ciudad</label>
                 <input 
                   type="text"
-                  id="direccion"
-                  name="direccion"
+                  id="ciudad"
+                  name="ciudad"
                   class="form-control"
-                  value = "<?php echo $val['direccion'];?>"
-                  
-                  
-                />
-              </div>
-
-              <div class="mb-1 col-12">
-                <label for="imagen" class="form-label">Imagen</label>
-                <input 
-                  type="text"
-                  id="imagen"
-                  name="imagen"
-                  class="form-control"
-                  value = "<?php echo $val['imagen'];?>"
+                  value = "<?php echo $val['ciudad'];?>"
                   
                   
                 />

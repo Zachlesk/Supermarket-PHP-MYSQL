@@ -1,20 +1,21 @@
 <?php
 
-require_once("./Pdo.php");
+require_once("../db.php");
 
-class Empleados extends ConexiónPdo{
+class Proveedores{
     
     private $proveedorId;
     private $nombre;
     private $telefono;
     private $ciudad;
+    protected $dbCnx;
 
     public function __construct($proveedorId= 0, $nombre= "", $telefono=0, $ciudad=""){
         $this->proveedorId = $proveedorId;
         $this->nombre = $nombre;
         $this->telefono = $telefono;
         $this->ciudad = $ciudad;
-        parent::__construct();
+        $this->dbCnx = new PDO(DB_TYPE.":host=".DB_HOST.";dbname=".DB_NAME, DB_USER, DB_PWD, [PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC]);
     }
     
     //Getters
@@ -34,6 +35,8 @@ class Empleados extends ConexiónPdo{
         return $this->ciudad;
     }
 
+
+
     //Setters
     public function setProveedorId($proveedorId){
         $this->proveedorId =$proveedorId;
@@ -51,23 +54,21 @@ class Empleados extends ConexiónPdo{
         $this->ciudad =$ciudad;
     }
 
+
+
     public function insertData(){
         try {
-            $stm = $this-> dbCnx -> prepare("INSERT INTO empleados(nombre,telefono,ciudad,imagen) 
-            VALUES (:nomb,:cel,:dire,:img)");
-            $stm->bindParam(":nomb",$this->nombre);
-            $stm->bindParam(":cel",$this->telefono);
-            $stm->bindParam(":dire",$this->ciudad);
-            $stm->bindParam(":img",$this->imagen);
-            $stm->execute();
+            $stm = $this-> dbCnx -> prepare("INSERT INTO proveedores(nombre,telefono,ciudad) 
+            VALUES (?,?,?)");
+            $stm -> execute ([$this->nombre, $this->telefono, $this->ciudad]);
         } catch (Exception $e) {
             return $e->getMessages();
         }
     }
 
-    public function getAll(){
+    public function obtainAll(){
         try {
-            $stm = $this-> dbCnx -> prepare("SELECT * FROM empleados");
+            $stm = $this-> dbCnx -> prepare("SELECT * FROM proveedores");
             $stm -> execute();
             return $stm -> fetchAll();
         } catch (Exception $e) {
@@ -77,7 +78,7 @@ class Empleados extends ConexiónPdo{
     
     public function delete(){
         try {
-            $stm = $this-> dbCnx -> prepare("DELETE FROM empleados WHERE proveedorId = :id");
+            $stm = $this-> dbCnx -> prepare("DELETE FROM proveedores WHERE proveedorId = :id");
             $stm->bindParam(":id",$this->proveedorId);
             $stm -> execute();
             return $stm -> fetchAll();
@@ -88,7 +89,7 @@ class Empleados extends ConexiónPdo{
     
     public function selectOne(){
         try {
-            $stm = $this-> dbCnx -> prepare("SELECT * FROM empleados WHERE proveedorId = :id");
+            $stm = $this-> dbCnx -> prepare("SELECT * FROM proveedores WHERE proveedorId = :id");
             $stm->bindParam(":id",$this->proveedorId);
             $stm -> execute();
             return $stm -> fetchAll();
@@ -99,7 +100,7 @@ class Empleados extends ConexiónPdo{
 
     public function update(){
         try {
-            $stm = $this-> dbCnx -> prepare("UPDATE empleados SET nombre=:nomb , telefono=:descr , ciudad=:img
+            $stm = $this-> dbCnx -> prepare("UPDATE proveedores SET nombre=:nomb , telefono=:descr , ciudad=:img
             WHERE proveedorId = :id");
             $stm->bindParam(":id",$this->proveedorId);
             $stm->bindParam(":nomb",$this->nombre);
