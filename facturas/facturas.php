@@ -1,3 +1,15 @@
+<?php
+
+  require_once("./config.php");
+
+  $data = new Facturas();
+
+  $all = $data -> obtainAll();
+  $idempleado = $data->obtenerEmpleadoId();
+  $idcliente = $data->obtenerClienteId();
+
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -96,11 +108,11 @@
                 <td> <?= $val["clienteId"] ?> </td>
                 <td> <?= $val["fecha"] ?> </td>
                 <td>
-                  <a class="btn btn-outline-danger" href="../Controllers/Facturas/borrarFacturas.php?facturaId=<?=$val['facturaId']?>&req=delete">
+                  <a class="btn btn-outline-danger" href="borrarFacturas.php?facturaId=<?=$val['facturaId']?>&req=delete">
                   <i class="bi bi-trash3"></i>Borrar</a>
                 </td>
                 <td>
-                  <a class="btn btn-outline-warning" href="../Controllers/Facturas/actualizarFacturas.php?facturaId=<?=$val['facturaId']?>">
+                  <a class="btn btn-outline-warning" href="actualizarFacturas.php?facturaId=<?=$val['facturaId']?>">
                   <i class="bi bi-pencil-square"></i>Editar</a>
                 </td>
               </tr>
@@ -138,15 +150,17 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body" style="background-color: rgb(231, 253, 246);">
-          <form class="col d-flex flex-wrap" action="../Controllers/Facturas/registrarFacturas.php" method="post">
-              <div class="mb-1 col-12">
+          <form class="col d-flex flex-wrap" action="registrarFacturas.php" method="post">
+              
+          
+          <div class="mb-1 col-12">
                 <label for="empleadoId" class="form-label">Empleado Id</label>
                 <select class="form-select" aria-label="Default select example" id="empleadoId" name="empleadoId" required>
                   <option selected>Seleccione el id del Empleados</option>
                   <?php
                     foreach($idempleado as $key => $valor){
                     ?> 
-                  <option value="<?= $valor["empleadoId"]?>"><?= $valor["empleadoId"]?></option>
+                  <option value="<?= $valor["empleadoId"]?>"><?= $valor["nombre"]?></option>
                   <?php
                     }
                   ?>
@@ -155,13 +169,16 @@
 
               <div class="mb-1 col-12">
                 <label for="clienteId" class="form-label">Cliente Id</label>
-                <input 
-                  type="text"
-                  id="clienteId"
-                  name="clienteId"
-                  class="form-control"
-                  required  
-                />
+                <select class="form-select" aria-label="Default select example" id="clienteId" name="clienteId" required>
+                  <option selected>Seleccione el id del Cliente</option>
+                  <?php
+                    foreach($idcliente as $key => $valor){
+                    ?> 
+                  <option value="<?= $valor["clienteId"]?>"><?= $valor["nombre"]?></option>
+                  <?php
+                    }
+                  ?>
+                </select>
               </div>
 
               <div class="mb-1 col-12">

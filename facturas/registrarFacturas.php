@@ -4,6 +4,7 @@ if(isset($_POST["guardar"])){
 
     $config = new Facturas();
 
+    $config->setFacturaId($_POST["facturaId"]);
     $config->setEmpleadoId($_POST["empleadoId"]);
     $config->setClienteId($_POST["clienteId"]);
     $config->setFecha($_POST["fecha"]);

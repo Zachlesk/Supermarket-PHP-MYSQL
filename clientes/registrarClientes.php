@@ -1,10 +1,11 @@
 <?php
-
 if (isset($_POST['guardar'])) {
     require_once("config.php");
 
     $config = new Clientes();
 
+
+    $config-> setNombre($_POST['nombre']);
     $config-> setCelular($_POST['celular']);
     $config-> setCompania($_POST['compania']);;
 

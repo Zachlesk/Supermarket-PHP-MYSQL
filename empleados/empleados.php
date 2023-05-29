@@ -105,7 +105,8 @@
               <td><?php echo $val['nombre']?>  </td>
               <td><?php echo $val['celular']?>  </td>
               <td><?php echo $val['direccion']?>  </td>
-              <td><?php echo $val['imagen']?>  </td>
+              <td><img src="dir/<?php echo $val['imagen']?>" 
+              width="70px;"></td>
               <td>
                 <a class="btn btn-danger" href="borrarEmpleados.php?id=<?=$val['empleadoId'] ?>&&req=delete"> Borrar </a>
                 <a class="btn btn-warning" href="actualizarEmpleados.php?id=<?=$val['empleadoId'] ?>"> Editar </a>
@@ -178,7 +179,7 @@
               <div class="mb-1 col-12">
                 <label for="logros" class="form-label">Imagen</label>
                 <input 
-                  type="text"
+                  type="file"
                   id="imagen"
                   name="imagen"
                   class="form-control"  

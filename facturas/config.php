@@ -103,5 +103,27 @@ class Facturas extends PDOCnx{
             return $e->getMessage();
         }
     }
+
+public function obtenerEmpleadoId(){
+    try {
+        $stm = $this-> dbCnx -> prepare("SELECT empleadoId,nombre FROM empleados");
+        $stm -> execute();
+        return $stm -> fetchAll();
+    } catch (Exception $e) {
+        return $e->getMessages();
+    }
 }
+
+public function obtenerClienteId(){
+    try {
+        $stm = $this-> dbCnx -> prepare("SELECT clienteId,nombre FROM clientes");
+        $stm -> execute();
+        return $stm -> fetchAll();
+    } catch (Exception $e) {
+        return $e->getMessages();
+    }
+}
+}
+
+
 ?>

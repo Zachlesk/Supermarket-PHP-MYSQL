@@ -5,13 +5,16 @@ require_once("../config.php");
 
 class Clientes extends PDOCnx{
     
+
     private $clienteId;
+    private $nombre;
     private $celular;
     private $compania;
     
 
-    public function __construct($clienteId= 0, $celular= "", $compania=""){
+    public function __construct($clienteId= 0, $nombre="",$celular= "", $compania=""){
         $this->clienteId = $clienteId;
+        $this->nombre = $nombre;
         $this->celular = $celular;
         $this->compania = $compania;
         parent::__construct();
@@ -21,6 +24,10 @@ class Clientes extends PDOCnx{
     //Getters
     public function getClienteId(){
         return $this->clienteId;
+    }
+
+    public function getNombre(){
+        return $this->nombre;
     }
 
     public function getCelular(){
@@ -36,6 +43,10 @@ class Clientes extends PDOCnx{
         $this->clienteId =$clienteId;
     }
 
+    public function setNombre($nombre){
+        $this->nombre =$nombre;
+    }
+
     public function setCelular($celular){
         $this->celular =$celular;
     }
@@ -46,11 +57,11 @@ class Clientes extends PDOCnx{
 
     public function insertData(){
         try {
-            $stm = $this-> dbCnx -> prepare("INSERT INTO clientes(celular,compania) 
-            VALUES (?,?)");
-            $stm -> execute ([$this->celular, $this->compania]);
+            $stm = $this-> dbCnx -> prepare("INSERT INTO clientes(nombre,celular,compania) 
+            VALUES (?,?,?)");
+            $stm -> execute ([$this->nombre,$this->celular, $this->compania]);
         } catch (Exception $e) {
-            return $e->getMessages();
+            return $e->getMessage();
         }
     }
 
@@ -88,7 +99,7 @@ class Clientes extends PDOCnx{
         try {
             $stm = $this-> dbCnx -> prepare("UPDATE clientes SET celular= ? , compania ? 
             WHERE clienteId = ?");
-            $stm -> execute([$this->celular, $this->compania, $this->clienteId]);
+            $stm -> execute([$this->nombre, $this->celular, $this->compania, $this->clienteId]);
             return $stm -> fetchAll();
         } catch (Exception $e) {
             return $e->getMessages();

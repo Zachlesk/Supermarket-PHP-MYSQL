@@ -1,17 +1,24 @@
 <?php
-require_once("../../Models/Proveedores.php");
-$data = new Proveedores();
-$id = $_GET["proveedorId"];
-$data->setProveedorId($id);
+require_once("./config.php");
+$data = new Facturas();
+$idFactura = $_GET["facturaId"];
+$idEmpleado = $_GET["empleadoId"];
+$data->setFacturaId($idFactura);
+$data->setEmpleadoId($idEmpleado);
+
+$empleado = $data->EmpleadoId();
+$idempleados = $data->obtenerEmpleadoId();
+$idclientes = $data->obtenerClienteId();
 
 $record = $data->selectOne();
 $val = $record[0];
 
 if (isset($_POST["editar"])) {
 
-  $data->setNombre($_POST["nombre"]);
-  $data->setTelefono($_POST["telefono"]);
-  $data->setCiudad($_POST["ciudad"]);
+  $data->setFacturaId($_POST["facturaId"]);
+  $data->setEmpleadoId($_POST["empleadoId"]);
+  $data->setClienteId($_POST["clienteId"]);
+  $data->setFecha($_POST["fecha"]);
 
   $data->update();
    echo "
@@ -88,27 +95,39 @@ if (isset($_POST["editar"])) {
         <h2 class="m-2">Empleados a Editar</h2>
       <div class="menuTabla contenedor2">
       <form class="col d-flex flex-wrap" action=""  method="post">
-              <div class="mb-1 col-12">
-                <label for="nombre" class="form-label">Nombre</label>
-                <input 
-                  type="text"
-                  id="nombre"
-                  name="nombre"
-                  class="form-control"  
-                  value="<?= $val["nombre"]?>"
-                />
+              
+               <div class="mb-1 col-12">
+                <label for="empleadoId" class="form-label">Empleado ID</label>
+                <select class="form-select" aria-label="Default select example" id="empleadoId" name="empleadoId" required>
+                  <?php
+                    foreach($idEmpleado as $key => $valor){
+                    ?> 
+                  <option selected value="<?= $empleado["empleadoId"]?>"><?= $empleado["nombre"]?></option>
+                  <?php
+                    }
+                  ?>
+                  <?php
+                    foreach($idempleados as $key => $valor){
+                    ?> 
+                  <option value="<?= $valor["empleadoId"]?>"><?= $valor["nombre"]?></option>
+                  <?php
+                    }
+                  ?>
+                </select>
               </div>
 
               <div class="mb-1 col-12">
-                <label for="telefono" class="form-label">Telefono</label>
-                <input 
-                  type="text"
-                  id="telefono"
-                  name="telefono"
-                  class="form-control"  
-                  value="<?= $val["telefono"]?>"
-
-                />
+                <label for="clienteId" class="form-label">Cliente Id</label>
+                <select class="form-select" aria-label="Default select example" id="clienteId" name="clienteId" required>
+                  <option selected>Seleccione el id del Cliente</option>
+                  <?php
+                    foreach($idclientes as $key => $valor){
+                    ?> 
+                  <option value="<?= $valor["clienteId"]?>"><?= $valor["nombre"]?></option>
+                  <?php
+                    }
+                  ?>
+                </select>
               </div>
 
               <div class="mb-1 col-12">

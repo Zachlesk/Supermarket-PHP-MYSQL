@@ -109,7 +109,9 @@
               <td><?php echo $val['categoriaId']?>  </td>
               <td><?php echo $val['nombres']?>  </td>
               <td><?php echo $val['descripcion']?>  </td>
-              <td><?php echo $val['imagen']?>  </td>
+              <td><img src="dir/<?php echo $val['imagen']?>" 
+              width="70px;"></td>
+
               <td>
                 <a class="btn btn-danger" href="borrarCategorias.php?id=<?=$val['categoriaId'] ?>&&req=delete"> Borrar </a>
                 <a class="btn btn-warning" href="actualizarCategorias.php?id=<?=$val['categoriaId'] ?>"> Editar </a>
