@@ -107,6 +107,7 @@ body{
     .tabla{
       display: flex;
       gap: 20px;
+  
     }
   
     .cards{
@@ -182,26 +183,21 @@ body{
   
   
     }
-   
-  
-   
-  
-  
-  
-  
-  
+
   
     .table>tbody {
       vertical-align: sub !important;
+      
   }
   
   .table-custom {
     border-collapse: separate;
     border-spacing: 0 10px; 
+    
   }
   
   .table-custom tbody tr {
-    background-color: #b2eaec; 
+    background-color: #d8a1f1; 
     border-radius: 15px; 
     
   }
