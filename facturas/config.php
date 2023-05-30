@@ -1,6 +1,5 @@
 <?php
 
-require_once("../db.php");
 require_once("../config.php");
 
 class Facturas extends PDOCnx{
@@ -110,7 +109,7 @@ public function obtenerEmpleadoId(){
         $stm -> execute();
         return $stm -> fetchAll();
     } catch (Exception $e) {
-        return $e->getMessages();
+        return $e->getMessage();
     }
 }
 
@@ -120,7 +119,7 @@ public function obtenerClienteId(){
         $stm -> execute();
         return $stm -> fetchAll();
     } catch (Exception $e) {
-        return $e->getMessages();
+        return $e->getMessage();
     }
 }
 }

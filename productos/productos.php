@@ -80,7 +80,7 @@
     <div class="parte-media">
       <div style="display: flex; justify-content: space-between;">
         <h2> Dashboard </h2>
-        <button class="btn-m" data-bs-toggle="modal" data-bs-target="#registrarEstudiantes"><i class="bi bi-person-add " style="color: rgb(255, 255, 255);" ></i></button>
+        <button class="btn-m" data-bs-toggle="modal" data-bs-target="#registrarProductos"><i class="bi bi-person-add " style="color: rgb(255, 255, 255);" ></i></button>
       </div>
       <div class="menuTabla contenedor2">
         <table class="table table-custom ">
@@ -109,7 +109,7 @@
                 <td> <?= $val["categoriasId"] ?> </td>
                 <td> <?= $val["precioUnitario"] ?> </td>
                 <td> <?= $val["stock"] ?> </td>
-                <td> <?= $val["unidadesPedidad"] ?> </td>
+                <td> <?= $val["unidadesPedidas"] ?> </td>
                 <td> <?= $val["proveedorId"] ?> </td>
                 <td> <?= $val["nombreProducto"] ?> </td>
                 <td> <?= $val["descontinuado"] ?> </td>

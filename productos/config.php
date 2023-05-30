@@ -1,6 +1,5 @@
 <?php
 
-require_once("../db.php");
 require_once("../config.php");
 
 class Productos extends PDOCnx{
@@ -134,8 +133,8 @@ class Productos extends PDOCnx{
 
     public function update(){
         try {
-            $stm = $this-> dbCnx -> prepare("UPDATE productos SET categoriasId= ? , precioUnitario= ?, stock= ?, unidadesPedidas= ?, proveedorId = ?, nombreProducto = ?, descontinuado = ? WHERE productoId = ?");
-            $stm->execute([$this->categoriasId, $this->precioUnitario, $this->stock, $this->unidadesPedidas, $this->proveedorId, $this->nombreProducto, $this->descontinuado]);
+            $stm = $this-> dbCnx -> prepare("UPDATE productos SET categoriasId = ?, precioUnitario= ?, stock= ?, unidadesPedidas= ?, proveedorId = ?, nombreProducto = ?, descontinuado = ? WHERE productoId = ?");
+            $stm->execute([$this->categoriasId, $this->precioUnitario, $this->stock, $this->unidadesPedidas, $this->proveedorId, $this->nombreProducto, $this->descontinuado, $this->productoId]);
             return $stm -> fetchAll();
         } catch (Exception $e) {
             return $e->getMessage();
@@ -148,7 +147,7 @@ public function obtenerCategoriasId(){
         $stm -> execute();
         return $stm -> fetchAll();
     } catch (Exception $e) {
-        return $e->getMessages();
+        return $e->getMessage();
     }
 }
 
@@ -158,7 +157,7 @@ public function obtenerProveedorId(){
         $stm -> execute();
         return $stm -> fetchAll();
     } catch (Exception $e) {
-        return $e->getMessages();
+        return $e->getMessage();
     }
 }
 }

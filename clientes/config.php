@@ -1,6 +1,5 @@
 <?php
 
-require_once("../db.php");
 require_once("../config.php");
 
 class Clientes extends PDOCnx{
@@ -71,7 +70,7 @@ class Clientes extends PDOCnx{
             $stm -> execute();
             return $stm -> fetchAll();
         } catch (Exception $e) {
-            return $e->getMessages();
+            return $e->getMessage();
         }
     }
     
@@ -81,7 +80,7 @@ class Clientes extends PDOCnx{
             $stm -> execute([$this->clienteId]);
             return $stm -> fetchAll();
         } catch (Exception $e) {
-            return $e->getMessages();
+            return $e->getMessage();
         }
     }
     
@@ -91,7 +90,7 @@ class Clientes extends PDOCnx{
             $stm -> execute([$this->clienteId]);
             return $stm -> fetchAll();
         } catch (Exception $e) {
-            return $e->getMessages();
+            return $e->getMessage();
         }
     }
 
@@ -102,7 +101,7 @@ class Clientes extends PDOCnx{
             $stm -> execute([$this->nombre, $this->celular, $this->compania, $this->clienteId]);
             return $stm -> fetchAll();
         } catch (Exception $e) {
-            return $e->getMessages();
+            return $e->getMessage();
         }
     }
 }

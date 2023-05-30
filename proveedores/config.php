@@ -1,6 +1,5 @@
 <?php
 
-require_once("../db.php");
 require_once("../config.php");
 
 class Proveedores extends PDOCnx{
@@ -63,7 +62,7 @@ class Proveedores extends PDOCnx{
             VALUES (?,?,?)");
             $stm -> execute ([$this->nombre, $this->telefono, $this->ciudad]);
         } catch (Exception $e) {
-            return $e->getMessages();
+            return $e->getMessage();
         }
     }
 
@@ -73,44 +72,38 @@ class Proveedores extends PDOCnx{
             $stm -> execute();
             return $stm -> fetchAll();
         } catch (Exception $e) {
-            return $e->getMessages();
+            return $e->getMessage();
         }
     }
     
     public function delete(){
         try {
-            $stm = $this-> dbCnx -> prepare("DELETE FROM proveedores WHERE proveedorId = :id");
-            $stm->bindParam(":id",$this->proveedorId);
-            $stm -> execute();
+            $stm = $this-> dbCnx -> prepare("DELETE FROM proveedores WHERE proveedorId = ?");
+            $stm -> execute([$this->proveedorId]);
             return $stm -> fetchAll();
         } catch (Exception $e) {
-            return $e->getMessages();
+            return $e->getMessage();
         }
     }
     
     public function selectOne(){
         try {
-            $stm = $this-> dbCnx -> prepare("SELECT * FROM proveedores WHERE proveedorId = :id");
-            $stm->bindParam(":id",$this->proveedorId);
-            $stm -> execute();
+            $stm = $this-> dbCnx -> prepare("SELECT * FROM proveedores WHERE proveedorId = ?");
+            $stm -> execute([$this->proveedorId]);
             return $stm -> fetchAll();
         } catch (Exception $e) {
-            return $e->getMessages();
+            return $e->getMessage();
         }
     }
 
     public function update(){
         try {
-            $stm = $this-> dbCnx -> prepare("UPDATE proveedores SET nombre=:nomb , telefono=:descr , ciudad=:img
-            WHERE proveedorId = :id");
-            $stm->bindParam(":id",$this->proveedorId);
-            $stm->bindParam(":nomb",$this->nombre);
-            $stm->bindParam(":descr",$this->telefono);
-            $stm->bindParam(":img",$this->ciudad);
+            $stm = $this-> dbCnx -> prepare("UPDATE proveedores SET nombre,telefono,ciudad WHERE proveedorId = ?");
+            $stm -> execute([$this->proveedorId, $this->nombre, $this->telefono, $this->ciudad]);
             $stm -> execute();
             return $stm -> fetchAll();
         } catch (Exception $e) {
-            return $e->getMessages();
+            return $e->getMessage();
         }
     }
 }
