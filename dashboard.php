@@ -89,6 +89,12 @@
 
     </div>
 
+    <div class="parte-derecho " id="detalles" style="background-color:#572364; display:flex; align-items:center;">
+      <img src="./images/logoWhite.png" alt="" width="350"> 
+  
+
+    </div>
+
     
 
 

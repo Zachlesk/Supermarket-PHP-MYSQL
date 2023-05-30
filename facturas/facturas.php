@@ -128,10 +128,9 @@
 
     </div>
 
-    <div class="parte-derecho " id="detalles">
-      <h3>Detalle Estudiantes</h3>
-      <p>Cargando...</p>
-       <!-- ///////Generando la grafica -->
+    <div class="parte-derecho " id="detalles" style="background-color:#572364; display:flex; align-items:center; flex-direction:column">
+      <img src="../images/logoWhite.png" alt="" width="350"> 
+      <button class="btn-m" >  Detalles de las facturas </button>
 
     </div>
 
