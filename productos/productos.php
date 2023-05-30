@@ -1,5 +1,8 @@
 <?php
+ ini_set("display_errors", 1);
 
+ ini_set("display_startup_errors", 1);
+ error_reporting(E_ALL);
   require_once("./config.php");
 
   $data = new Productos();
@@ -114,7 +117,7 @@
                 <td> <?= $val["nombreProducto"] ?> </td>
                 <td> <?= $val["descontinuado"] ?> </td>
                 <td>
-                  <a class="btn btn-danger" href="borrarProductos.php?productoId=<?=$val['prodcutoId']?>&req=delete">
+                  <a class="btn btn-danger" href="borrarProductos.php?productoId=<?=$val['productoId']?>&req=delete">
                   Borrar</a>
                   <a class="btn btn-warning" href="actualizarProductos.php?facturaId=<?=$val['productoId']?>">
                   Editar</a>
@@ -162,7 +165,7 @@
                   <?php
                     foreach($idcategorias as $key => $valor){
                     ?> 
-                  <option value="<?= $valor["categoriasId"]?>"><?= $valor["nombres"]?></option>
+                  <option value="<?= $valor["categoriaId"]?>"><?= $valor["nombres"]?></option>
                   <?php
                     }
                   ?>

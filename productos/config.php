@@ -26,6 +26,7 @@ class Productos extends PDOCnx{
         parent::__construct();
     
     }
+
     
     //Getters
     public function getProductoId(){
@@ -140,7 +141,7 @@ class Productos extends PDOCnx{
             return $e->getMessage();
         }
     }
-
+    
 public function obtenerCategoriasId(){
     try {
         $stm = $this-> dbCnx -> prepare("SELECT categoriaId,nombres FROM categorias");
