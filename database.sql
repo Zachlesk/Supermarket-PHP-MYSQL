@@ -54,7 +54,7 @@ CREATE TABLE productos(
     unidadesPedidas INT NOT NULL,
     proveedorId INT,
     nombreProducto VARCHAR(50) NOT NULL,
-    descontinuado BOOLEAN,
+    descontinuado VARCHAR(50) NOT NULL,
     PRIMARY KEY(productoId),
     FOREIGN KEY (categoriasId) REFERENCES categorias(categoriaId),
     FOREIGN KEY (proveedorId) REFERENCES proveedores(proveedorId)

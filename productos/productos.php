@@ -1,3 +1,15 @@
+<?php
+
+  require_once("./config.php");
+
+  $data = new Productos();
+
+  $all = $data -> obtainAll();
+  $idcategorias = $data->obtenerCategoriasId();
+  $idproveedor = $data->obtenerProveedorId();
+
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -82,12 +94,35 @@
               <th scope="col">PROVEEDOR #</th>
               <th scope="col">NOMBRE PRODUCTO</th>
               <th scope="col">DESCONTINUADO</th>
+              <th scope="col">DETALLE</th>
             </tr>
           </thead>
           <tbody class="" id="tabla">
 
             <!-- ///////Llenado DInamico desde la Base de Datos -->
-         
+            <?php
+              foreach($all as $key => $val){
+            ?> 
+            
+            <tr>
+                <td> <?= $val["productoId"] ?> </td>
+                <td> <?= $val["categoriasId"] ?> </td>
+                <td> <?= $val["precioUnitario"] ?> </td>
+                <td> <?= $val["stock"] ?> </td>
+                <td> <?= $val["unidadesPedidad"] ?> </td>
+                <td> <?= $val["proveedorId"] ?> </td>
+                <td> <?= $val["nombreProducto"] ?> </td>
+                <td> <?= $val["descontinuado"] ?> </td>
+                <td>
+                  <a class="btn btn-danger" href="borrarProductos.php?productoId=<?=$val['prodcutoId']?>&req=delete">
+                  Borrar</a>
+                  <a class="btn btn-warning" href="actualizarProductos.php?facturaId=<?=$val['productoId']?>">
+                  Editar</a>
+                </td>
+              </tr>
+            <?php
+              }
+            ?>
        
 
           </tbody>
@@ -111,41 +146,94 @@
 
 
     <!-- /////////Modal de registro de nuevo estuiante //////////-->
-    <div class="modal fade" id="registrarEstudiantes" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="backdrop-filter: blur(5px)">
+    <div class="modal fade" id="registrarProductos" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="backdrop-filter: blur(5px)">
       <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" >
         <div class="modal-content" >
           <div class="modal-header" >
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Nuevo Estudiante</h1>
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Nuevo Producto</h1>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body" style="background-color: rgb(231, 253, 246);">
-            <form class="col d-flex flex-wrap" method="post">
+            <form class="col d-flex flex-wrap" action="registrarProductos.php" method="post">
+              
+            <div class="mb-1 col-12">
+                <label for="categoriasId" class="form-label">Categoria Id</label>
+                <select class="form-select" aria-label="Default select example" id="categoriasId" name="categoriasId" required>
+                  <option selected>Seleccione el id de la categoría </option>
+                  <?php
+                    foreach($idcategorias as $key => $valor){
+                    ?> 
+                  <option value="<?= $valor["categoriasId"]?>"><?= $valor["nombres"]?></option>
+                  <?php
+                    }
+                  ?>
+                </select>
+              </div>
+
+
               <div class="mb-1 col-12">
-                <label for="nombres" class="form-label">Nombres</label>
+                <label for="precioUnitario" class="form-label"> Precio Unidad </label>
                 <input 
-                  type="text"
-                  id="nombres"
-                  name="nombres"
+                  type="number"
+                  id="precioUnitario"
+                  name="precioUnitario"
                   class="form-control"  
                 />
               </div>
 
               <div class="mb-1 col-12">
-                <label for="direccion" class="form-label">Direccion</label>
+                <label for="stock" class="form-label"> Stock </label>
                 <input 
-                  type="text"
-                  id="direccion"
-                  name="direccion"
+                  type="number"
+                  id="stock"
+                  name="stock"
                   class="form-control"  
+                 
                 />
               </div>
 
               <div class="mb-1 col-12">
-                <label for="logros" class="form-label">Logros</label>
+                <label for="unidadesPedidas" class="form-label"> Unidades Pedidas </label>
+                <input 
+                  type="number"
+                  id="unidadesPedidas"
+                  name="unidadesPedidas"
+                  class="form-control"  
+                 
+                />
+              </div>
+
+              <div class="mb-1 col-12">
+                <label for="proveedorId" class="form-label">Proveedor Id</label>
+                <select class="form-select" aria-label="Default select example" id="proveedorId" name="proveedorId" required>
+                  <option selected>Seleccione el id del proveedor </option>
+                  <?php
+                    foreach($idproveedor as $key => $valor){
+                    ?> 
+                  <option value="<?= $valor["proveedorId"]?>"><?= $valor["nombre"]?></option>
+                  <?php
+                    }
+                  ?>
+                </select>
+              </div>
+
+              <div class="mb-1 col-12">
+                <label for="nombreProducto" class="form-label"> Nombre del Producto </label>
                 <input 
                   type="text"
-                  id="logros"
-                  name="logros"
+                  id="nombreProducto"
+                  name="nombreProducto"
+                  class="form-control"  
+                 
+                />
+              </div>
+
+              <div class="mb-1 col-12">
+                <label for="descontinuado" class="form-label"> ¿Descontinuado? </label>
+                <input 
+                  type="text"
+                  id="descontinuado"
+                  name="descontinuado"
                   class="form-control"  
                  
                 />

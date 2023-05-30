@@ -1,0 +1,21 @@
+<?php
+if(isset($_POST["guardar"])){
+    require_once("config.php");
+
+    $config = new Productos();
+
+    $config->setProductoId($_POST["productoId"]);
+    $config->setCategoriasId($_POST["categoriasId"]);
+    $config->setPrecioUnitario($_POST["precioUnitario"]);
+    $config->setStock($_POST["stock"]);
+    $config->setUnidadesPedidas($_POST["unidadesPedidas"]);
+    $config->setProveedorId($_POST["proveedorId"]);
+    $config->setNombreProducto($_POST["nombreProducto"]);
+    $config->setDescontinuado($_POST["descontinuado"]);
+
+    $config->insertData();
+
+    echo "
+    <script> alert('Los datos fueron guardados exitosamente'); document.location='productos.php'</script>"; 
+}
+?>

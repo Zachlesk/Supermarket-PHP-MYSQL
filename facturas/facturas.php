@@ -108,12 +108,10 @@
                 <td> <?= $val["clienteId"] ?> </td>
                 <td> <?= $val["fecha"] ?> </td>
                 <td>
-                  <a class="btn btn-outline-danger" href="borrarFacturas.php?facturaId=<?=$val['facturaId']?>&req=delete">
-                  <i class="bi bi-trash3"></i>Borrar</a>
-                </td>
-                <td>
-                  <a class="btn btn-outline-warning" href="actualizarFacturas.php?facturaId=<?=$val['facturaId']?>">
-                  <i class="bi bi-pencil-square"></i>Editar</a>
+                  <a class="btn btn-danger" href="borrarFacturas.php?facturaId=<?=$val['facturaId']?>&req=delete">
+                  Borrar</a>
+                  <a class="btn btn-warning" href="actualizarFacturas.php?facturaId=<?=$val['facturaId']?>">
+                  Editar</a>
                 </td>
               </tr>
             <?php
