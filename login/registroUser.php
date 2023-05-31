@@ -108,10 +108,19 @@ public function insertData () {
         }
 
     }
+
+
+    public function verify() {
+        try {
+        $stm = $this->dbCnx -> prepare("SELECT * FROM users WHERE username='$username' AND password='$password' AND email='$email'");
+        $stm -> execute();
+            return $stm -> fetchAll(); 
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
 }
-
-
-
 
 
 ?>
