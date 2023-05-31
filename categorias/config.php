@@ -60,7 +60,7 @@ class Categorias extends PDOCnx{
             VALUES (?,?,?)");
             $stm -> execute ([$this->nombres, $this->descripcion, $this->imagen]);
         } catch (Exception $e) {
-            return $e->getMessages();
+            return $e->getMessage();
         }
     }
 
@@ -70,7 +70,7 @@ class Categorias extends PDOCnx{
             $stm -> execute();
             return $stm -> fetchAll();
         } catch (Exception $e) {
-            return $e->getMessages();
+            return $e->getMessage();
         }
     }
     
@@ -81,7 +81,7 @@ class Categorias extends PDOCnx{
             return $stm -> fetchAll();
             echo "<script> alert('Categoria eliminada');document.location='categorias.php'</script>'";
         } catch (Exception $e) {
-            return $e->getMessages();
+            return $e->getMessage();
         }
     }
     
@@ -91,7 +91,7 @@ class Categorias extends PDOCnx{
             $stm -> execute([$this->categoriaId]);
             return $stm -> fetchAll();
         } catch (Exception $e) {
-            return $e->getMessages();
+            return $e->getMessage();
         }
     }
 
@@ -101,7 +101,7 @@ class Categorias extends PDOCnx{
             $stm -> execute([$this->nombres, $this->descripcion, $this->imagen, $this->categoriaId]);
             return $stm -> fetchAll();
         } catch (Exception $e) {
-            return $e->getMessages();
+            return $e->getMessage();
         }
     }
 }

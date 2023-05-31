@@ -98,9 +98,8 @@ class Proveedores extends PDOCnx{
 
     public function update(){
         try {
-            $stm = $this-> dbCnx -> prepare("UPDATE proveedores SET nombre,telefono,ciudad WHERE proveedorId = ?");
-            $stm -> execute([$this->proveedorId, $this->nombre, $this->telefono, $this->ciudad]);
-            $stm -> execute();
+            $stm = $this-> dbCnx -> prepare("UPDATE proveedores SET nombre = ?, telefono = ? , ciudad = ? WHERE proveedorId = ?");
+            $stm -> execute([$this->nombre, $this->telefono, $this->ciudad,$this->proveedorId]);
             return $stm -> fetchAll();
         } catch (Exception $e) {
             return $e->getMessage();

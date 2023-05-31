@@ -112,7 +112,7 @@ if(isset($_POST["editar"])) {
               </div>
 
               <div class="mb-1 col-12">
-                <label for="imagen" class="form-label">Ciudad</label>
+                <label for="ciudad" class="form-label">Ciudad</label>
                 <input 
                   type="text"
                   id="ciudad"

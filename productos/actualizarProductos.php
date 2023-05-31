@@ -1,21 +1,28 @@
 <?php
 
 require_once("config.php");
-$data = new Categorias();
+$data = new Productos();
 
 $id = $_GET["id"]; 
 
-$data->setCategoriaId($id);
+$data->setProductoId($id);
 $record = $data->selectOne();
 $val = $record[0];
+$idcategorias = $data->obtenerCategoriasId();
+  $idproveedor = $data->obtenerProveedorId();
 
 if(isset($_POST["editar"])) {
-    $data->setNombres($_POST["nombres"]);
-    $data->setDescripcion($_POST["descripcion"]);
-    $data->setImagen($_POST["imagen"]);
+    $data->setCategoriasId($_POST["categoriasId"]);
+    $data->setPrecioUnitario($_POST["precioUnitario"]);
+    $data->setStock($_POST["stock"]);
+    $data->setUnidadesPedidas($_POST["unidadesPedidas"]);
+    $data->setProveedorId($_POST["proveedorId"]);
+    $data->setNombreProducto($_POST["nombreProducto"]);
+    $data->setDescontinuado($_POST["descontinuado"]);
+
 
     $data -> update();
-    echo "<script> alert('El dato seleccionado ha sido actualizado satisfactoriamente');document.location='categorias.php'</script>";
+    echo "<script> alert('El producto seleccionado ha sido actualizado satisfactoriamente');document.location='productos.php'</script>";
 }
 ?>
 
@@ -87,38 +94,94 @@ if(isset($_POST["editar"])) {
         <h2 class="m-2">Estudiante a Editar</h2>
       <div class="menuTabla contenedor2">
       <form class="col d-flex flex-wrap" action=""  method="post">
-              <div class="mb-1 col-12">
-                <label for="nombres" class="form-label">Nombres</label>
-                <input 
-                  type="text"
-                  id="nombres"
-                  name="nombres"
-                  class="form-control"  
-                  value = "<?php echo $val['nombres'];?>"
-                  /> 
-                    
+              
+      <div class="mb-1 col-12">
+                <label for="categoriasId" class="form-label">Categorias ID</label>
+                <select class="form-select" aria-label="Default select example" id="categoriasId" name="categoriasId" required>
+                  <option selected>Seleccione el id de la Categorias</option>
+                  <?php
+                    foreach($idcategorias as $key => $valor){
+                    ?> 
+                  <option value="<?= $valor["categoriasId"]?>"><?= $valor["nombre"]?></option>
+                  <?php
+                    }
+                  ?>
+                </select>
               </div>
 
               <div class="mb-1 col-12">
-                <label for="descripcion" class="form-label">Descripcion</label>
+                <label for="precioUnitario" class="form-label"> Precio Unitario </label>
                 <input 
                   type="text"
-                  id="descripcion"
-                  name="descripcion"
+                  id="precioUnitario"
+                  name="precioUnitario"
                   class="form-control"  
-                  value = "<?php echo $val['descripcion'];?>"
+                  value = "<?php echo $val['precioUnitario'];?>"
                  
                 />
               </div>
 
               <div class="mb-1 col-12">
-                <label for="imagen" class="form-label">Imagen</label>
+                <label for="stock" class="form-label"> Stock </label>
                 <input 
                   type="text"
-                  id="imagen"
-                  name="imagen"
+                  id="stock"
+                  name="stock"
                   class="form-control"
-                  value = "<?php echo $val['imagen'];?>"
+                  value = "<?php echo $val['stock'];?>"
+                  
+                  
+                />
+              </div>
+
+              <div class="mb-1 col-12">
+                <label for="unidadesPedidas" class="form-label"> Unidades Pedidas </label>
+                <input 
+                  type="text"
+                  id="unidadesPedidas"
+                  name="unidadesPedidas"
+                  class="form-control"
+                  value = "<?php echo $val['unidadesPedidas'];?>"
+                  
+                  
+                />
+              </div>
+
+              <div class="mb-1 col-12">
+                <label for="categoriasId" class="form-label">Categorias ID</label>
+                <select class="form-select" aria-label="Default select example" id="categoriasId" name="categoriasId" required>
+                  <option selected>Seleccione el id de la Proveedor Id</option>
+                  <?php
+                    foreach($idproveedor as $key => $valor){
+                    ?> 
+                  <option value="<?= $valor["proveedorId"]?>"><?= $valor["nombre"]?></option>
+                  <?php
+                    }
+                  ?>
+                </select>
+              </div>
+
+              <div class="mb-1 col-12">
+                <label for="nombreProducto" class="form-label"> Nombre Producto </label>
+                <input 
+                  type="text"
+                  id="nombreProducto"
+                  name="nombreProducto"
+                  class="form-control"
+                  value = "<?php echo $val['nombreProducto'];?>"
+                  
+                  
+                />
+              </div>
+
+              <div class="mb-1 col-12">
+                <label for="descontinuado" class="form-label"> Descontinuado </label>
+                <input 
+                  type="text"
+                  id="descontinuado"
+                  name="descontinuado"
+                  class="form-control"
+                  value = "<?php echo $val['descontinuado   '];?>"
                   
                   
                 />

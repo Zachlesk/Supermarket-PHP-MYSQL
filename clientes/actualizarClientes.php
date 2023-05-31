@@ -27,7 +27,7 @@ if(isset($_POST["editar"])) {
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Actualizar Estudiante</title>
+  <title>Actualizar clietne </title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
@@ -84,41 +84,41 @@ if(isset($_POST["editar"])) {
     </div>
 
     <div class="parte-media">
-        <h2 class="m-2">Estudiante a Editar</h2>
+        <h2 class="m-2">Cliente a Editar</h2>
       <div class="menuTabla contenedor2">
       <form class="col d-flex flex-wrap" action=""  method="post">
               <div class="mb-1 col-12">
-                <label for="nombres" class="form-label">Nombres</label>
+                <label for="nombre" class="form-label">Nombre</label>
                 <input 
                   type="text"
-                  id="nombres"
-                  name="nombres"
+                  id="nombre"
+                  name="nombre"
                   class="form-control"  
-                  value = "<?php echo $val['nombres'];?>"
+                  value = "<?php echo $val['nombre'];?>"
                   /> 
                     
               </div>
 
               <div class="mb-1 col-12">
-                <label for="descripcion" class="form-label">Descripcion</label>
+                <label for="celular" class="form-label"> Celular </label>
                 <input 
                   type="text"
-                  id="descripcion"
-                  name="descripcion"
+                  id="celular"
+                  name="celular"
                   class="form-control"  
-                  value = "<?php echo $val['descripcion'];?>"
+                  value = "<?php echo $val['celular'];?>"
                  
                 />
               </div>
 
               <div class="mb-1 col-12">
-                <label for="imagen" class="form-label">Imagen</label>
+                <label for="compania" class="form-label"> Compañia </label>
                 <input 
                   type="text"
-                  id="imagen"
-                  name="imagen"
+                  id="compania"
+                  name="compania"
                   class="form-control"
-                  value = "<?php echo $val['imagen'];?>"
+                  value = "<?php echo $val['compania'];?>"
                   
                   
                 />
@@ -132,13 +132,11 @@ if(isset($_POST["editar"])) {
       </div>
     </div>
 
-    <div class="parte-derecho " id="detalles">
-      <h3>Detalle Estudiantes</h3>
-      <p>Cargando...</p>
-       <!-- ///////Generando la grafica -->
+    <div class="parte-derecho " id="detalles" style="background-color:#572364; display:flex; align-items:center;">
+      <img src="../images/logoWhite.png" alt="" width="350"> 
+</div>
 
-    </div>
-
+    
   </div>
 
 

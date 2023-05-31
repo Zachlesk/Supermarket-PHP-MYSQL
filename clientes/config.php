@@ -96,7 +96,7 @@ class Clientes extends PDOCnx{
 
     public function update(){
         try {
-            $stm = $this-> dbCnx -> prepare("UPDATE clientes SET nombre= ?, celular= ? , compania ? 
+            $stm = $this-> dbCnx -> prepare("UPDATE clientes SET nombre= ?, celular= ? , compania = ? 
             WHERE clienteId = ?");
             $stm -> execute([$this->nombre, $this->celular, $this->compania, $this->clienteId]);
             return $stm -> fetchAll();
