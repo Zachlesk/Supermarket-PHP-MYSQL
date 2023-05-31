@@ -70,6 +70,13 @@ CREATE TABLE facturaDetalle(
     FOREIGN KEY (productoId) REFERENCES productos(productoId)
 );
 
-
+CREATE TABLE users(
+    id INT primary key auto_increment,
+    empleadoId INT NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    username VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    FOREIGN KEY (empleadoId) REFERENCES empleados(empleadoId)
+);
 
 DROP DATABASE supermarket;

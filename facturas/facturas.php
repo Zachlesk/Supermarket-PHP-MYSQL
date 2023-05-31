@@ -1,10 +1,13 @@
 <?php
 
   require_once("./config.php");
+  require_once("../facturaDetalles/config.php");
 
   $data = new Facturas();
+  $data2 = new FacturasDetalle();
 
   $all = $data -> obtainAll();
+  $all = $data2 -> obtainAll();
   $idempleado = $data->obtenerEmpleadoId();
   $idcliente = $data->obtenerClienteId();
 
@@ -130,7 +133,7 @@
 
     <div class="parte-derecho " id="detalles" style="background-color:#572364; display:flex; align-items:center; flex-direction:column">
       <img src="../images/logoWhite.png" alt="" width="350"> 
-      <button class="btn-m" >  Detalles de las facturas </button>
+      <a class="btn-m" href="../facturaDetalles/facturaDetalles.php">  Detalles de las facturas </a>
 
     </div>
 
@@ -147,7 +150,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body" style="background-color: rgb(231, 253, 246);">
-          <form class="col d-flex flex-wrap" action="registrarFacturas.php" method="post">
+          <form class="col d-flex flex-wrap" action="registrarFacturas.php"  method="post">
               
           
           <div class="mb-1 col-12">
@@ -188,6 +191,30 @@
                   required  
                 />
               </div>
+            
+            
+              <div class="mb-1 col-12">
+                <label for="fecha" class="form-label"> Cantidad </label>
+                <input 
+                  type="number"
+                  id="cantidad"
+                  name="cantidad"
+                  class="form-control"
+                  required  
+                />
+              </div>
+
+              <div class="mb-1 col-12">
+                <label for="fecha" class="form-label"> Precio </label>
+                <input 
+                  type="number"
+                  id="precio"
+                  name="precio"
+                  class="form-control"
+                  required  
+                />
+              </div>
+
 
               <div class=" col-12 m-2">
                 <input type="submit" class="btn btn-primary" value="guardar" name="guardar"/>

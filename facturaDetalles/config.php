@@ -5,16 +5,16 @@ require_once("../config.php");
 class FacturasDetalle extends PDOCnx{
     
     private $facturaId;
-    private $empleadoId;
-    private $clienteId;
-    private $fecha;
+    private $productoId;
+    private $cantidad;
+    private $precioVenta;
     
 
-    public function __construct($facturaId=0,$empleadoId= 0, $clienteId= 0, $fecha=0){
+    public function __construct($facturaId=0,$productoId= 0, $cantidad= 0, $precioVenta=0){
         $this->facturaId = $facturaId;
-        $this->empleadoId = $empleadoId;
-        $this->clienteId = $clienteId;
-        $this->fecha = $fecha;
+        $this->productoId = $productoId;
+        $this->cantidad = $cantidad;
+        $this->precioVenta = $precioVenta;
         parent::__construct();
     }
     
@@ -23,16 +23,16 @@ class FacturasDetalle extends PDOCnx{
         return $this->facturaId;
     }
 
-    public function getEmpleadoId(){
-        return $this->empleadoId;
+    public function getProductoId(){
+        return $this->productoId;
     }
 
-    public function getClienteId(){
-        return $this->clienteId;
+    public function getCantidad(){
+        return $this->cantidad;
     }
 
-    public function getFecha(){
-        return $this->fecha;
+    public function getPrecioVenta(){
+        return $this->precioVenta;
     }
 
     //Setters
@@ -40,23 +40,23 @@ class FacturasDetalle extends PDOCnx{
         $this->facturaId =$facturaId;
     }
 
-    public function setEmpleadoId($empleadoId){
-        $this->empleadoId =$empleadoId;
+    public function setProductoId($productoId){
+        $this->productoId =$productoId;
     }
 
-    public function setClienteId($clienteId){
-        $this->clienteId =$clienteId;
+    public function setCantidad($cantidad){
+        $this->cantidad =$cantidad;
     }
 
-    public function setFecha($fecha){
-        $this->fecha =$fecha;
+    public function setPrecioVenta($precioVenta){
+        $this->precioVenta =$precioVenta;
     }
 
     public function insertData(){
         try {
-            $stm = $this-> dbCnx -> prepare("INSERT INTO facturas(empleadoId,clienteId,fecha) 
-            VALUES (?,?,?)");
-            $stm->execute([$this->empleadoId, $this->clienteId, $this->fecha]);
+            $stm = $this-> dbCnx -> prepare("INSERT INTO facturaDetalle(facturaId,productoId,cantidad,precioVenta) 
+            VALUES (?,?,?,?)");
+            $stm->execute([$this->facturaId, $this->productoId, $this->cantidad, $this->precioVenta]);
         } catch (Exception $e) {
             return $e->getMessage();
         }
@@ -64,27 +64,18 @@ class FacturasDetalle extends PDOCnx{
 
     public function obtainAll(){
         try {
-            $stm = $this-> dbCnx -> prepare("SELECT * FROM facturas");
+            $stm = $this-> dbCnx -> prepare("SELECT * FROM facturaDetalle");
             $stm -> execute();
             return $stm -> fetchAll();
         } catch (Exception $e) {
             return $e->getMessage();
         }
     }
-    
-    public function delete(){
-        try {
-            $stm = $this-> dbCnx -> prepare("DELETE FROM facturas WHERE facturaId = ?");
-            $stm-> execute([$this->facturaId]);
-            return $stm -> fetchAll();
-        } catch (Exception $e) {
-            return $e->getMessage();
-        }
-    }
+  
     
     public function selectOne(){
         try {
-            $stm = $this-> dbCnx -> prepare("SELECT * FROM facturas WHERE facturaId = ?");
+            $stm = $this-> dbCnx -> prepare("SELECT * FROM facturaDetalle WHERE facturaId = ?");
             $stm -> execute([$this->facturaId]);
             return $stm -> fetchAll();
         } catch (Exception $e) {
@@ -94,18 +85,18 @@ class FacturasDetalle extends PDOCnx{
 
     public function update(){
         try {
-            $stm = $this-> dbCnx -> prepare("UPDATE facturas SET empleadoId= ? , clienteId= ?, fecha= ?
+            $stm = $this-> dbCnx -> prepare("UPDATE facturaDetalle SET facturaId= ? , productoId= ?, cantidad= ?, precioVenta = ?
             WHERE facturaId = ?");
-            $stm -> execute([$this->empleadoId, $this->clienteId, $this->fecha, $this->facturaId]);
+            $stm -> execute([$this->facturaId, $this->productoId, $this->cantidad, $this->precioVenta]);
             return $stm -> fetchAll();
         } catch (Exception $e) {
             return $e->getMessage();
         }
     }
 
-public function obtenerEmpleadoId(){
+public function obtenerFacturaId(){
     try {
-        $stm = $this-> dbCnx -> prepare("SELECT empleadoId,nombre FROM empleados");
+        $stm = $this-> dbCnx -> prepare("SELECT facturaId FROM facturas");
         $stm -> execute();
         return $stm -> fetchAll();
     } catch (Exception $e) {
@@ -113,9 +104,9 @@ public function obtenerEmpleadoId(){
     }
 }
 
-public function obtenerClienteId(){
+public function obtenerProductoId(){
     try {
-        $stm = $this-> dbCnx -> prepare("SELECT clienteId,nombre FROM clientes");
+        $stm = $this-> dbCnx -> prepare("SELECT productoId,nombreProducto FROM productos");
         $stm -> execute();
         return $stm -> fetchAll();
     } catch (Exception $e) {
