@@ -111,7 +111,7 @@ public function obtenerEmpleadoId(){
     } catch (Exception $e) {
         return $e->getMessage();
     }
-}
+}   
 
 public function obtenerClienteId(){
     try {

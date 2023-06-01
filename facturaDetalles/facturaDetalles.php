@@ -1,5 +1,9 @@
 <?php
+  ini_set("display_errors", 1);
 
+  ini_set("display_startup_errors", 1);
+  
+  error_reporting(E_ALL);
   require_once("./config.php");
 
   $data = new FacturasDetalle();
@@ -79,14 +83,13 @@
 
     <div class="parte-media">
       <div style="display: flex; justify-content: space-between;">
-        <h2> Dashboard </h2>
+        <h2> Detalles de factura </h2>
         <button class="btn-m" data-bs-toggle="modal" data-bs-target="#registrarEstudiantes"><i class="bi bi-person-add " style="color: rgb(255, 255, 255);" ></i></button>
       </div>
       <div class="menuTabla contenedor2">
         <table class="table table-custom ">
           <thead>
             <tr>
-            <th scope="col">#</th>
               <th scope="col">FACTURA ID</th>
               <th scope="col">PRODUCTO ID</th>
               <th scope="col">CANTIDAD</th>
@@ -134,7 +137,7 @@
 
 
     <!-- /////////Modal de registro de nuevo estuiante //////////-->
-    <!-- <div class="modal fade" id="registrarEstudiantes" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="backdrop-filter: blur(5px)">
+    <div class="modal fade" id="registrarEstudiantes" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" style="backdrop-filter: blur(5px)">
       <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" >
         <div class="modal-content" >
           <div class="modal-header" >
@@ -142,13 +145,13 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body" style="background-color: rgb(231, 253, 246);">
-          <form class="col d-flex flex-wrap" action="registrarFacturas.php" method="post">
+          <form class="col d-flex flex-wrap" action="registrarFacturaDetalles.php" method="post">
               
           
           <div class="mb-1 col-12">
-                <label for="empleadoId" class="form-label">Empleado Id</label>
-                <select class="form-select" aria-label="Default select example" id="empleadoId" name="empleadoId" required>
-                  <option selected>Seleccione el id del Empleados</option>
+                <label for="facturaId" class="form-label">Factura Id</label>
+                <select class="form-select" aria-label="Default select example" id="facturaId" name="facturaId" required>
+                  <option selected>Seleccione el id de la Factura</option>
                    <?php
                     foreach($idfactura as $key => $valor){
                     ?>  
@@ -160,13 +163,13 @@
               </div>
 
               <div class="mb-1 col-12">
-                <label for="clienteId" class="form-label">Cliente Id</label>
-                <select class="form-select" aria-label="Default select example" id="clienteId" name="clienteId" required>
-                  <option selected>Seleccione el id del Cliente</option>
+                <label for="productoId" class="form-label">Producto Id</label>
+                <select class="form-select" aria-label="Default select example" id="productoId" name="producto  Id" required>
+                  <option selected>Seleccione el nombre del Producto</option>
                   <?php
-                    foreach($idcliente as $key => $valor){
+                    foreach($idproducto as $key => $valor){
                     ?> 
-                  <option value="<?= $valor["clienteId"]?>"><?= $valor["nombre"]?></option>
+                  <option value="<?= $valor["productoId"]?>"><?= $valor["nombreProducto"]?></option>
                   <?php
                     }
                   ?>
@@ -174,11 +177,22 @@
               </div>
 
               <div class="mb-1 col-12">
-                <label for="fecha" class="form-label">fecha</label>
+                <label for="cantidad" class="form-label"> Cantidad </label>
                 <input 
-                  type="date"
-                  id="fecha"
-                  name="fecha"
+                  type="number"
+                  id="cantidad"
+                  name="cantidad"
+                  class="form-control"
+                  required  
+                />
+              </div>
+
+              <div class="mb-1 col-12">
+                <label for="precioVenta" class="form-label"> Precio de Venta </label>
+                <input 
+                  type="number"
+                  id="precioVenta"
+                  name="precioVenta"
                   class="form-control"
                   required  
                 />
@@ -191,7 +205,7 @@
          </div>       
         </div>
       </div>
-    </div> -->
+    </div> 
     
 
 
