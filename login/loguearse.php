@@ -1,19 +1,21 @@
 <?php
-if(isset($_POST['loguearse'])) {
-    require_once("registroUser.php");
-    $registrar = new RegistroUser();
 
-    $registrar-> getEmpleadoId(1);
-    $registrar-> getUsername($_GET['username']);
-    $registrar-> getEmail($_GET['email']);
-    $registrar-> getPassword($_GET['password']);
+session_start();
 
+if(isset($_POST['loguearse'])){
+    require_once("LoginUser.php");
+    $credenciales = new LoginUser();
+    $credenciales -> setEmail($_POST['email']);
+    $credenciales -> setPassword($_POST['password']);
 
-    $registrar-> verify();
-    $_SESSION["username"] = $username;
-    $_SESSION["email"] = $email;
-    $_SESSION["password"] = $password;
-    header("Location: ../dashboard.php");
+    $login = $credenciales -> login();
 
-    echo "<script> alert('Usuario registrado satisfactoriamente');document.location='loginRegister.php'</script>";
+    if($login) {
+        header('Location: ../dashboard.php');
+
+    } else{
+        echo "<script> alert('Password/Email invalidos');document.location='loginRegister.php';</script>";
+    }
 }
+
+?>
