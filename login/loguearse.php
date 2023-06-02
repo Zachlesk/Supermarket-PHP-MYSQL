@@ -7,6 +7,7 @@ if(isset($_POST['loguearse'])){
     $credenciales = new LoginUser();
     $credenciales -> setEmail($_POST['email']);
     $credenciales -> setPassword($_POST['password']);
+    $credenciales -> setUsuario($_POST['usuario']);
 
     $login = $credenciales -> login();
 

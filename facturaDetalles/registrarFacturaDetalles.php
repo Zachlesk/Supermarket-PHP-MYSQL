@@ -16,6 +16,6 @@ if(isset($_POST["guardar"])){
 
     $config->insertData();
 
-    echo "<script> document.location='../facturas/facturas.php'</script>"; 
+    echo "<script> alert('Los datos fueron guardados exitosamente');document.location='../facturaDetalles/facturaDetalles.php'</script>"; 
 }
 ?>

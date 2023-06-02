@@ -14,6 +14,7 @@ if(isset($_POST['registrarse'])) {
     $registrar-> setUsername($_POST['username']);
     $registrar-> setEmail($_POST['email']);
     $registrar-> setPassword($_POST['password']);
+    $registrar-> setUsuario($_POST['usuario']);
 
 
     $registrar-> insertData();

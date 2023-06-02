@@ -43,6 +43,15 @@
                           class="form-control"  
                         />
                     </div>
+                    <div class="mb-3 m-4">
+                      <label for="ingles" class="form-label"> Tipo de Usuario </label>
+                      <select class="form-select" aria-label="Default select example" id="usuario"
+                          name="usuario" required>
+                        <option selected>Selecione su tipo de Usuario </option>
+                        <option value="Empleado" name="empleado"> Empleado </option>
+                        <option value="Administrativo" name="admin"> Administrativo </option>
+                      </select>
+                    </div>
                  
                     <input type="submit" class="btn btn-primary m-4" value="Iniciar sesión" name="loguearse">
                   </form>
@@ -66,7 +75,18 @@
              <div  class="d-flex justify-content-center align-items-center" >
                 
                 <form action="registrarse.php" method="POST">
-                    <h1 class="m-5" style="font-weight: 800;">¡Registrate! </h1>
+
+
+                    <h1 class="m-4" style="font-weight: 800;">¡Registrate! </h1>
+                    <div class="mb-3 m-4">
+                      <label for="ingles" class="form-label"> Tipo de Usuario </label>
+                      <select class="form-select" aria-label="Default select example" id="usuario"
+                          name="usuario" required>
+                        <option selected>Selecione su tipo de Usuario </option>
+                        <option value="Empleado" name="empleado"> Empleado </option>
+                        <option value="Administrativo" name="admin"> Administrativo </option>
+                      </select>
+                    </div>
                     <div class="mb-3 m-4">
                         <label for="email" class="form-label"> Email </label>
                         <input 

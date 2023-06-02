@@ -8,12 +8,16 @@ class LoginUser extends PDOCnx {
     private $id;
     private $email;
     private $password;
+    private $usuario;
 
-    public function __construct($id=0, $email="", $password="", $dbCnx="") {
+
+
+    public function __construct($id=0, $email="", $password="", $usuario="", $dbCnx="") {
         $this->id = $id;
         $this->email = $email;
         $this->password = $password;
-        parent::__construct($dbCnx);
+        $this->usuario = $usuario;
+        parent::__construct();
     }
 
     public function getId() {
@@ -34,6 +38,14 @@ class LoginUser extends PDOCnx {
     public function setPassword($password) {
         $this->password = $password;
     }
+
+    public function getUsuario() {
+        return $this->usuario;
+    }
+    public function setUsuario($usuario) {
+        $this->usuario = $usuario;
+    }
+
 
 
     public function fetchAll() {
@@ -59,6 +71,7 @@ class LoginUser extends PDOCnx {
                 $_SESSION['email'] = $user[0]['email'];
                 $_SESSION['password'] = $user[0]['password'];
                 $_SESSION['username'] = $user[0]['username'];
+                $_SESSION['usuario'] = $user[0]['usuario'];
                 return true;
             }else {
                 false;

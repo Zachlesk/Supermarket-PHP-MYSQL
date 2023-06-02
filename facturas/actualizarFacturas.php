@@ -5,8 +5,6 @@ $idFactura = $_GET["facturaId"];
 $idEmpleado = $_GET["empleadoId"];
 $data->setFacturaId($idFactura);
 $data->setEmpleadoId($idEmpleado);
-
-$empleado = $data->EmpleadoId();
 $idempleados = $data->obtenerEmpleadoId();
 $idclientes = $data->obtenerClienteId();
 
@@ -23,7 +21,7 @@ if (isset($_POST["editar"])) {
   $data->update();
    echo "
     <script> alert('Los Datos fueron Actualizados exitosamente');
-    document.location='../../Templates/Proveedores.php'
+    document.location='facturas.php'
     </script>"; 
 }
 
@@ -44,7 +42,7 @@ if (isset($_POST["editar"])) {
     integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 
 
-  <link rel="stylesheet" type="text/css" href="../../Templates/assets/css/estudiantes.css">
+  <link rel="stylesheet" type="text/css" href="../css/dashboard.css">
 
 </head>
 
@@ -99,6 +97,7 @@ if (isset($_POST["editar"])) {
                <div class="mb-1 col-12">
                 <label for="empleadoId" class="form-label">Empleado ID</label>
                 <select class="form-select" aria-label="Default select example" id="empleadoId" name="empleadoId" required>
+                <option selected>Seleccione el id del Empleado</option>
                   <?php
                     foreach($idEmpleado as $key => $valor){
                     ?> 
@@ -131,13 +130,13 @@ if (isset($_POST["editar"])) {
               </div>
 
               <div class="mb-1 col-12">
-                <label for="ciudad" class="form-label">Ciudad</label>
+                <label for="fecha" class="form-label">Fecha</label>
                 <input 
-                  type="text"
-                  id="ciudad"
-                  name="ciudad"
+                  type="date"
+                  id="fecha"
+                  name="fecha"
                   class="form-control"  
-                  value="<?= $val["ciudad"]?>"
+                  value="<?= $val["fecha"]?>"
 
                 />
               </div>
@@ -151,7 +150,7 @@ if (isset($_POST["editar"])) {
     </div>
 
     <div class="parte-derecho " id="detalles">
-      <h3>Detalle Proveedores</h3>
+      <h3>Detalle Facturas</h3>
       <p>Cargando...</p>
        <!-- ///////Generando la grafica -->
 

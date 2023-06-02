@@ -14,13 +14,16 @@ class RegistroUser extends PDOCnx {
     private $email;
     private $password;
 
-    public function __construct($id=0, $empleadoId=0, $username="", $email="", $password="", $dbCnx="") {
+    private $usuario;
+
+    public function __construct($id=0, $empleadoId=0, $username="", $email="", $password="", $dbCnx="", $usuario="") {
         $this->id = $id;
         $this->empleadoId = $empleadoId;
         $this->username = $username;
         $this->email = $email;
         $this->password = $password;
-        parent::__construct($dbCnx);
+        $this->usuario = $usuario;
+        parent::__construct();
     }
 
     public function getId() {
@@ -30,7 +33,7 @@ class RegistroUser extends PDOCnx {
         $this->id = $id;
     }
     public function getEmpleadoId() {
-        return $this->idCamper;
+        return $this->empleadoId;
     }
     public function setEmpleadoId($empleadoId) {
         $this->empleadoId = $empleadoId;
@@ -54,6 +57,13 @@ class RegistroUser extends PDOCnx {
         $this->password = $password;
     }
 
+    public function getUsuario() {
+        return $this->usuario;
+    }
+
+    public function setUsuario($usuario) {
+        $this->usuario = $usuario;
+    }
 
     public function checkUser($email) {
         try {
@@ -71,8 +81,8 @@ class RegistroUser extends PDOCnx {
 
     public function insertData () {
             try { 
-                $stm = $this-> dbCnx -> prepare("INSERT INTO users (empleadoId,username,email,password) VALUES (?,?,?,?)");
-                $stm -> execute ([$this->empleadoId, $this->username, $this->email, md5($this->password)]);
+                $stm = $this-> dbCnx -> prepare("INSERT INTO users (empleadoId,username,email,password,usuario) VALUES (?,?,?,?,?)");
+                $stm -> execute ([$this->empleadoId, $this->username, $this->email, md5($this->password), $this->usuario]);
                 $login = new LoginUser;
 
                 $login-> setEmail($_POST["email"]);
